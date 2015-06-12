@@ -12,7 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 * @return mixed
 */
 function df_options($name) {
-  	return Dahz_Customizer_Options::getOptionSetting($name);
+	$options = new Dahz_Customizer_Options();
+  	return $options::getOptionSetting($name);
 }
 
 /**
@@ -21,5 +22,6 @@ function df_options($name) {
 * @return boolean
 */
 function df_is_customizing() {
-	return Dahz_Customizer_Options::isCustomizerPreview();
+	$preview = new Dahz_Customizer_Options();
+	return $preview::isCustomizerPreview();
 }

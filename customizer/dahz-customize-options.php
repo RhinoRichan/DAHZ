@@ -115,4 +115,3 @@ class Dahz_Customizer_Options
   }
 
 }
-new Dahz_Customizer_Options;
