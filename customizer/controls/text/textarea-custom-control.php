@@ -13,9 +13,6 @@ class DAHZ_Textarea_Control extends WP_Customize_Control {
 
 	public $type = 'textarea';
 
-	  // public function enqueue() {
-	  //   wp_enqueue_script( 'dahz-api-controls' );
-	  // }
 
   /**
    * Render the control's content.
@@ -40,31 +37,5 @@ class DAHZ_Textarea_Control extends WP_Customize_Control {
     <?php
   }
 
-
-	public function to_json()
-	{
-		parent::to_json();
-
-		$this->json['link'] = $this->get_link();
-		$this->json['value'] = $this->value();
-	}
-
-  /**
-   * Underscore JS template to handle the control's output.
-   * 
-   * @since 2.0.0
-   * @return void
-   */
-  	public function content_template() { ?>
-  		<label>
-  			<span class="customize-control-title">
-  			{{ data.label }}
-  			<# if( data.description) { #>
-  			<i data-content="{{{ data.description }}}" data-position="bottom right" data-offset="10" class="icon tooltip"></i>
-  			<# } #>
-  			</span>
-  			<textarea class="large-text" cols="45" rows="5" {{{ data.link }}}>{{{data.value}}}</textarea>
-  		</label>
-  	<?php }
 
 }
