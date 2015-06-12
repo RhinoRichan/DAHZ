@@ -14,6 +14,7 @@ Version 2.0.0 == on Development
 * added: register_control_type in some customizer custom control.
 * added: new method content_template in customizer custom control. 
 * added: apply_filters('df_options_default_setting'), by making the return valuable filterable, the Theme defaults can be easily overridden by a Child Theme or Plugin.
+* updated: get-the-image.php extensions
 * remove: store option customizer to DB, because if user switch theme is rollback to default.
 
 Version 1.5.0
