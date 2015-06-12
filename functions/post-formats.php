@@ -14,7 +14,6 @@ add_action( 'wp_loaded', 'dahz_structured_post_formats', 1 );
  * Theme compatibility for post formats.  This function adds appropriate filters to 'the_content' for 
  * the various post formats that a theme supports.
  *
- * @note   This function may change drastically in the future depending on the direction of the WP post format UI.
  * @since  1.2.1
  * @access public
  * @return void
@@ -102,7 +101,7 @@ function dahz_image_content( $content ) {
  */
 function dahz_link_content( $content ) {
 
-	if ( has_post_format( 'link' ) && !preg_match( '/<a\s[^>]*?href=[\'"](.+?)[\'"]/is', $content ) )
+	if ( has_post_format( 'link' ) && !post_password_required() && !preg_match( '/<a\s[^>]*?href=[\'"](.+?)[\'"]/is', $content ) )
 		$content = make_clickable( $content );
 
 	return $content;
