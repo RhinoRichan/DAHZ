@@ -1,4 +1,3 @@
-edit
 # Theme Customizer UI Design & Theme Framework Technology Inspiration #
 - WordPress 
 - Semantic UI
