@@ -30,7 +30,7 @@ class dahzBreadcrumbs {
 		
 		$this->setup();
 
-		add_filter(	'dahz_breadcrumbs_trail', array($this, 'dahz_maybe_add_shop_page_link') );
+		add_filter( 'dahz_breadcrumbs_trail', array($this, 'dahz_maybe_add_shop_page_link') );
 		add_filter( 'dahz_breadcrumbs_args', array($this, 'df_set_default_breadcrumb_taxonomies') );
 
 	} 
