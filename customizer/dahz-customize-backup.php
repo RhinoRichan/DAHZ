@@ -18,7 +18,7 @@ ob_start();
 
     function dahz_customizer_import_option_page() {
     ?>
-      <div class="col span_3 import">
+      <div class="col two-col import">
       <div class="stuffbox">
         <h4 class="title"><span class="dashicons dashicons-upload"></span><?php _e('Restore/Import', 'dahztheme'); ?></h4>
         <div class="padded">
@@ -72,7 +72,7 @@ ob_start();
     function dahz_customizer_export_option_page() {
       if ( ! isset( $_POST['export'] ) ) {
       ?>
-        <div class="col span_3 export">
+        <div class="col two-col export">
         <div class="stuffbox">
           <h4 class="title"><span class="dashicons dashicons-download"></span><?php _e('Backup/Export', 'dahztheme'); ?></h4>
           <div class="padded">

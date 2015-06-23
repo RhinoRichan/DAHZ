@@ -18,34 +18,18 @@
 .group:after { clear:both;}
 .group { zoom:1; /* For IE 6/7 */ }
 /*  GRID OF THREE  */
-.span_6 {
-	width: 100%;
-}
-
-.span_5 {
-  	width: 83.06%;
-}
-
-.span_4 {
-  	width: 66.13%;
-}
-
-.span_3 {
+.two-col {
   	width: 49.2%;
 }
 
-.span_2 {
+.three-col{
   	width: 32.26%;
-}
-
-.span_1 {
-  	width: 15.33%;
 }
 
 /*  GO FULL WIDTH BELOW 768 PIXELS */
 @media only screen and (max-width: 768px) {
 	.col {  margin: 1% 0 1% 0%; }
-	.span_1, .span_2, .span_3, .span_4 { width: 100%; }
+	.two-col, .three-col { width: 100%; }
 }
 
 .padded{
@@ -54,8 +38,8 @@
 
 .dahz-wrap{
  position: relative;
- max-width: 1000px;
- margin: 25px 40px 0 2px;
+  margin: 25px 40px 0 20px;
+  max-width: 1050px;
 }
 
 .theme-description{
@@ -64,14 +48,48 @@
  margin: 1em 200px 1em 0;
 }
 
-.theme-badge{
+.home-wrap .theme-badge{
 position: absolute;
 top: 0;
 right: 0;
 }
 
+.theme-badge{
+	text-align: center;
+	width:150px;
+	display: inline-block;
+	margin-top: 15px;
+	background-color: #fff;
+}
+
+.theme-badge img {
+	vertical-align: middle;
+}
+
+.theme-badge p {
+  background-color: #0073aa;
+  color: #fff;
+  margin: 0;
+  padding: 1em 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.home-wrap h2{
+  margin: .2em 200px 0 0;
+  color: #32373c;
+  line-height: 1.2em;
+  font-size: 2.8em;
+  font-weight: 400;
+}
+
+.home-wrap div.error, .home-wrap div.updated {
+  display: none!important;
+}
+
 .dahz-welcome-panel{
 	position: relative;
+	min-height:200px;
 }
 
 .dahz-wrap ul.theme-info {

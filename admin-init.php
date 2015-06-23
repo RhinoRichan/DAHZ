@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Dahz Framework - A WordPress theme development framework.
  * @package   DahzFramework
- * @version   2.0.0
+ * @version   2.0.0-alpha
  * @author    Dahz
  * @copyright Copyright (c) 2015, Dahz
  */
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
      * @since 1.0.0
      */
         /* Sets the framework version number. */
-        define('DF_VERSION', '2.0.0');
+        define('DF_VERSION', '2.0.0-alpha');
 
         /* Sets the path to the parent theme directory. */
         define('THEME_DIR', get_template_directory());

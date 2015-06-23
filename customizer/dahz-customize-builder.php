@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Build Customizer
- * @param mixed $wp_manager 
+ * @param mixed $wp_customize 
  * @author Dahz
  * @return mixed            
  * @since 1.2.1
@@ -24,7 +24,7 @@ class Dahz_Customizer_Builder {
 		add_action('customize_register', array( $this, 'isBuildCustomizer' ), 99 );
 	}
 
-	public function isBuildCustomizer($wp_manager) {
+	public function isBuildCustomizer($wp_customize) {
 
 		$controls = $this->getAllControl();
 		$this->settings = new Dahz_Customize_Settings();
@@ -35,8 +35,8 @@ class Dahz_Customizer_Builder {
 			return;
 		}
 		foreach ( $controls as $control ) {
-			$this->settings->add( $wp_manager, $control );
-			$this->controls->add( $wp_manager, $control );
+			$this->settings->add( $wp_customize, $control );
+			$this->controls->add( $wp_customize, $control );
 		}
 
 	}

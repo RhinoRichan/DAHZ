@@ -9,7 +9,13 @@
 class Dahz_screen_admin_base
 {	
 
-	public $suffix;
+	/**
+	 * get minimize script
+	 * @var array
+	 * @since 1.5.0
+	 * 
+	 */
+    public $suffix;
 	/**
 	 * Array of data for the current theme.
 	 * @access  protected
@@ -41,8 +47,8 @@ class Dahz_screen_admin_base
 	 * @return  void
 	 */
 	protected function set_theme_data () {
-		$this->theme_data = get_theme_framework_version_data();
-		$this->theme_obj  = wp_get_theme();
+		$this->theme_data   = get_theme_framework_version_data();
+		$this->theme_obj    = wp_get_theme();
 	} // End set_theme_data()
 
 

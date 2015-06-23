@@ -37,16 +37,23 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 
 	function _intro() {
 		$ct = $this->theme_obj;
+		$cf = apply_filters('dahz_screen_config', array());
 		$intro = 'Thanks for installing! ' . $ct->display( 'Name' ) . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio,
 		 corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?';
+		 echo $cf['theme_content'];
 		?>
-		<h2><?php echo sprintf( __( 'Welcome to %s', 'dahztheme' ), '<span class="theme-name">' . $ct->display( 'Name' ) . '</span>' ); ?></h2>
 		<div class="dahz-welcome-panel">
+		<h2><?php echo sprintf( __( 'Welcome to %s', 'dahztheme' ), '<span class="theme-name">' . $ct->display( 'Name' ) . '</span>' ); ?></h2>
+		<div class="theme-badge">
+			<img src="<?php echo $cf['theme_badge']; ?>" alt="theme badge">
+			<p><?php printf( __( 'Version %s', 'dahztheme' ), '<strong>' . $ct->__get( 'Version' ) . '</strong>' ); ?></p>
+		</div>
 		<p class="theme-description"> 
-		<?php echo apply_filters( 'home_screen_intro_description', $intro ); ?> 
+		<?php echo ( $cf['theme_description'] != '' ? $cf['theme_description'] : $intro ); ?> 
 		</p>
 		<?php $this->_theme_meta(); ?>
 		</div>
+		<hr>
 		<?php $this->_theme_content(); ?>
 		 <?php
 	}
@@ -54,17 +61,14 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 	function _theme_meta() {
 		$ct = $this->theme_obj;
 		?>
-		<div class="theme-badge">
-			<?php echo apply_filters('dahz_theme_badge', '' ); ?>
-		</div>
 		<ul class="theme-info dahz-theme-info">
-			<li><?php printf( __( 'Version %s', 'dahztheme' ), '<strong>' . $ct->__get( 'Version' ) . '</strong>' ); ?></li>
+			<!-- <li><?php //printf( __( 'Version %s', 'dahztheme' ), '<strong>' . $ct->__get( 'Version' ) . '</strong>' ); ?></li> -->
 			<?php
-			if ($ct->parent()) {
+			//if ($ct->parent()) {
 			?>
-			<li><?php printf( __( '%s Version %s', 'dahztheme' ), $ct->parent()->__get( 'Name' ), '<strong>' . $ct->parent()->__get( 'Version' ) . '</strong>' ); ?></li>
+			<!-- <li><?php// printf( __( '%s Version %s', 'dahztheme' ), $ct->parent()->__get( 'Name' ), '<strong>' . $ct->parent()->__get( 'Version' ) . '</strong>' ); ?></li> -->
 			<?php
-			}
+			//}
 			if ( current_user_can( 'install_themes' ) ) {
 			?>
 			<li><a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary"><?php printf( __( 'Customize %s', 'dahztheme' ), $ct->display( 'Name' ) ); ?></a></li>
@@ -80,39 +84,39 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 	function _theme_content() {
         ob_start(); ?>
         <div class="row group">
-        <div class="col span_3">        
+        <div class="col two-col">        
         <h3>Title</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p>
  		</div>
-        <div class="col span_3"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col two-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div>
  		</div>
 
         <div class="stuffbox">
         <div class="row group">
-        <div class="col span_2">
+        <div class="col three-col">
         <div class="padded">
         <h3>Title</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p>
  		</div></div>
-        <div class="col span_2"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div></div>
-        <div class="col span_2"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div></div>
  		</div>
  		</div>
 
  		<div class="row group">
-        <div class="col span_2">        
+        <div class="col three-col">        
         <h3>Title</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p>
  		</div>
-        <div class="col span_2"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div>
-        <div class="col span_2"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div>
  		</div>
         <?php

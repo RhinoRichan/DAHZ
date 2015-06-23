@@ -76,11 +76,11 @@ class Dahz_Customizer_Base
   }
 
 
-  function regControlType($wp_manager) {
+  function regControlType($wp_customize) {
 
     $customizer_control = array(
                  DF_CUSTOMIZER_CONTROL_DIR . 'controls/media/media-uploader-custom-control.php',
-                 DF_CUSTOMIZER_CONTROL_DIR . 'controls/font/googlefont-custom-control.php',
+                 DF_CUSTOMIZER_CONTROL_DIR . 'controls/typography/googlefont-custom-control.php',
                  DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-description-custom-control.php',
                  DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-subtitle-custom-control.php',
                  DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-slider-custom-control.php',
@@ -94,22 +94,21 @@ class Dahz_Customizer_Base
     foreach ( $customizer_control as $control ) {
     require_once $control;            
     }
-    $wp_manager->register_control_type( 'DAHZ_Subtitle_Control' );
-    $wp_manager->register_control_type( 'DAHZ_TextDescription_Control' );
-    //$wp_manager->register_control_type( 'DAHZ_Textarea_Control' );
-    $wp_manager->register_control_type( 'DAHZ_Layout_Picker_Control' );
+    $wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
+    $wp_customize->register_control_type( 'DAHZ_TextDescription_Control' );
+    $wp_customize->register_control_type( 'DAHZ_Layout_Picker_Control' );
   }
 
   /**
    * Register section custom css
    *
    * @version 2.0.0 
-   * @param  $wp_manager
+   * @param  $wp_customize
    * @return array
    */
-  function add_customize_section_base($wp_manager){
+  function add_customize_section_base($wp_customize){
     
-    $wp_manager->add_section('df_customizer_custom_style_section', array(
+    $wp_customize->add_section('df_customizer_custom_style_section', array(
             'title' => _x('Custom CSS', 'backend customizer', 'dahztheme'),
             'priority' => 1000
     ));
@@ -145,7 +144,7 @@ class Dahz_Customizer_Base
    */
   function output_custom_css() {
       if (df_options('custom_styles')) { 
-        return printf('<style type="text/css">%s</style>', wp_filter_nohtml_kses(df_options('custom_styles')) );
+        return printf('<style type="text/css">%s</style>', wp_strip_all_tags( df_options('custom_styles') ));
       }
   }
 

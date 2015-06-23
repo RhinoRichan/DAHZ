@@ -38,11 +38,11 @@ class Dahz_Customize_Controls extends Dahz_Customizer_Builder {
 
     /**
      * 
-     * @param string $wp_manager 
+     * @param string $wp_customize 
      * @param string $control
      * @since 1.3.0 
      */
-	public function add( $wp_manager, $control ) {
+	public function add( $wp_customize, $control ) {
 			
 		$control = self::array_of_control( $control );
          
@@ -54,51 +54,51 @@ class Dahz_Customize_Controls extends Dahz_Customizer_Builder {
 		// control
 			if ( 'description' == $control['type'] ) {
 				
-				$wp_manager->add_control( new DAHZ_TextDescription_Control( $wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_TextDescription_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'sub-title' == $control['type'] ) {
 
-				$wp_manager->add_control( new DAHZ_Subtitle_Control( $wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_Subtitle_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'textarea' == $control['type'] ) {
 
-				$wp_manager->add_control( new DAHZ_Textarea_Control( $wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_Textarea_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'images_radio' == $control['type'] ) {
 
-				$wp_manager->add_control( new DAHZ_Layout_Picker_Control( $wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_Layout_Picker_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'slider' == $control['type'] ) {
 				
-				$wp_manager->add_control( new DAHZ_RangeSlider_Control( $wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_RangeSlider_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'uploader' == $control['type'] ) {
 
-				$wp_manager->add_control( new DAHZ_Media_Uploader_Control( $wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_Media_Uploader_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'image' == $control['type'] ) {
 
-				$wp_manager->add_control( new WP_Customize_Image_Control( $wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'color' == $control['type'] ) {
 
-				$wp_manager->add_control( new WP_Customize_Color_Control($wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, $control['id'], $control ));
 
 			} elseif ( 'select' == $control['type'] || ( 'select' == $control['type'] && isset( $control['mode'] ) && 'search' == $control['mode'] ) ) {
 
-				$wp_manager->add_control( new DAHZ_Selectbox_Dropdown_Control($wp_manager, $control['id'], $control )); 
+				$wp_customize->add_control( new DAHZ_Selectbox_Dropdown_Control($wp_customize, $control['id'], $control )); 
 
 			} elseif ( 'checkbox' == $control['type'] || ( 'checkbox' == $control['type'] && isset( $control['mode'] ) && 'toggle' == $control['mode'] ) ) {
 
-				$wp_manager->add_control( new DAHZ_Checkbox_Control($wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_Checkbox_Control($wp_customize, $control['id'], $control ));
 
 			} elseif ( 'radio' == $control['type'] || ( 'radio' == $control['type'] && isset( $control['mode'] ) && 'buttonset' == $control['mode'] && 'image' == $control['mode']  ) ) {
 
-				$wp_manager->add_control( new DAHZ_Radiobox_Control($wp_manager, $control['id'], $control ));
+				$wp_customize->add_control( new DAHZ_Radiobox_Control($wp_customize, $control['id'], $control ));
 
 			} else {
 
-				$wp_manager->add_control($control['id'], array(
+				$wp_customize->add_control($control['id'], array(
 					'type' => isset( $control['type'] ) ? $control['type'] : '',
 					'label' => isset( $control['label'] ) ? $control['label'] : '',
 					'section' => $control['section'],
