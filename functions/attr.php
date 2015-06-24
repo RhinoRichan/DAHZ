@@ -160,8 +160,8 @@ function dahz_attr_content( $attr ) {
 	$attr['itemprop'] = 'mainContentOfPage';
 
 	if ( is_singular( 'post' ) || is_home() || is_archive() ) {
-		$attr['itemprop']  = '';
-		$attr['itemscope'] = '';
+		$attr['itemprop']  = 'itemprop';
+		$attr['itemscope'] = 'itemscope';
 		$attr['itemtype']  = 'http://schema.org/Blog';
 	}
 
