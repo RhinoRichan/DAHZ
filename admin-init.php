@@ -60,6 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         require_once DF_FUNCTION_DIR . 'get-options.php';
         require_once DF_FUNCTION_DIR . 'basic.php';
+        require_once DF_FUNCTION_DIR . 'data-head.php';
         require_once DF_FUNCTION_DIR . 'attr.php';
         require_once DF_FUNCTION_DIR . 'post-formats.php';
         require_once DF_FUNCTION_DIR . 'template.php';
