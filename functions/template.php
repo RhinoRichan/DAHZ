@@ -10,9 +10,13 @@
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-/* ----------------------------------------------------------------------------------- */
-/* Get Template Part                                                                   */
-/* ----------------------------------------------------------------------------------- */
+/**
+ * Get Template Part
+ *                                                                    
+ * @since 1.2.1
+ * @access public
+ * @return string
+ */
 function dahz_get_template($composer, $base, $extension = '') {
 
         get_template_part('includes/templates/' . $composer . '/' . $base, $extension);
@@ -72,11 +76,11 @@ function dahz_get_content_template() {
 	$templates[] = 'content.php';
 	$templates[] = 'includes/templates/content/content.php';
 
-	/* Allow devs to filter the content template hierarchy. */
-	$templates = apply_filters( 'dahz_content_template_hierarchy', $templates );
-
-	/* Apply filters and return the found content template. */
-	include( apply_filters( 'dahz_content_template', locate_template( $templates, false, false ) ) );
+	// Apply filters and find the template.
+	$template = locate_template( apply_filters( 'dahz_content_template_hierarchy', $templates ) );
+	// If template is found, include it.
+	if ( apply_filters( 'dahz_content_template', $template ) )
+		include( $template );
 }
 
 /**
@@ -101,7 +105,7 @@ function dahz_get_menu( $name = '' ) {
 	$templates[] = 'menu.php';
 	$templates[] = 'includes/templates/menu/menu.php';
 
-	locate_template( $templates, true );
+	locate_template( $templates, true, false );
 }
 
 /**
@@ -125,7 +129,7 @@ function dahz_get_menu( $name = '' ) {
  * @param  string  $name
  * @return void
  */
-function dahz_get_header( $name = null ) {
+function dahz_get_header( $name = '' ) {
 
 	do_action( 'get_header', $name ); // Core WordPress hook
 
@@ -139,7 +143,7 @@ function dahz_get_header( $name = null ) {
 	$templates[] = 'header.php';
 	$templates[] = 'includes/templates/header/header.php';
 
-	locate_template( $templates, true );
+	locate_template( $templates, true, false );
 }
 
 /**
@@ -163,7 +167,7 @@ function dahz_get_header( $name = null ) {
  * @param  string  $name
  * @return void
  */
-function dahz_get_footer( $name = null ) {
+function dahz_get_footer( $name = '') {
 
 	do_action( 'get_footer', $name ); // Core WordPress hook
 
@@ -177,7 +181,7 @@ function dahz_get_footer( $name = null ) {
 	$templates[] = 'footer.php';
 	$templates[] = 'includes/templates/footer/footer.php';
 
-	locate_template( $templates, true );
+	locate_template( $templates, true, false );
 }
 
 /**
@@ -201,7 +205,7 @@ function dahz_get_footer( $name = null ) {
  * @param  string  $name
  * @return void
  */
-function dahz_get_sidebar( $name = null ) {
+function dahz_get_sidebar( $name = '' ) {
 
 	do_action( 'get_sidebar', $name ); // Core WordPress hook
 
@@ -215,5 +219,5 @@ function dahz_get_sidebar( $name = null ) {
 	$templates[] = 'sidebar.php';
 	$templates[] = 'includes/templates/sidebar/sidebar.php';
 
-	locate_template( $templates, true );
+	locate_template( $templates, true, false );
 }
