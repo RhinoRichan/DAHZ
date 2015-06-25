@@ -33,23 +33,20 @@ function dahz_meta_charset() {
 add_action( 'dahz_meta', 'dahz_meta_charset', 0 );
 
 
-if (!function_exists('dahz_meta_viewport')) {
 /**
  * Load responsive <meta> tags in the <head> 
  * @since 2.0.0
  * 
  */
-    function dahz_meta_viewport() {
+function dahz_meta_viewport() {
         $html = '';
 
         $html .= "\n" . '<!--  Mobile viewport scale -->' . "\n";
         $html .= '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">' . "\n";
 
         echo $html;
-    }
-
-// End dahz_meta_viewport()
 }
+// End dahz_meta_viewport()
 add_action( 'dahz_meta', 'dahz_meta_viewport', 1 );
 
 

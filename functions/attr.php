@@ -23,6 +23,7 @@ add_filter( 'dahz_attr_sidebar', 'dahz_attr_sidebar', 5, 2 );
 add_filter( 'dahz_attr_menu',    'dahz_attr_menu',    5, 2 );
 
 /* Header attributes. */
+add_filter( 'dahz_attr_head',             'dahz_attr_head',           5 );
 add_filter( 'dahz_attr_branding',         'dahz_attr_branding',         5 );
 add_filter( 'dahz_attr_site-title',       'dahz_attr_site_title',       5 );
 add_filter( 'dahz_attr_site-description', 'dahz_attr_site_description', 5 );
@@ -105,7 +106,14 @@ function dahz_attr_body( $attr ) {
 	$attr['itemscope'] = 'itemscope';
 	$attr['itemtype']  = 'http://schema.org/WebPage';
 
+	if ( is_singular( 'post' ) || is_home() || is_archive() )
+		$attr['itemtype'] = 'http://schema.org/Blog';
+
+	elseif ( is_search() )
+		$attr['itemtype'] = 'http://schema.org/SearchResultsPage';
+
 	return $attr;
+
 }
 
 /**
@@ -157,18 +165,9 @@ function dahz_attr_content( $attr ) {
 	$attr['id']       = 'content';
 	$attr['class']    = 'content';
 	$attr['role']     = 'main';
-	$attr['itemprop'] = 'mainContentOfPage';
 
-	if ( is_singular( 'post' ) || is_home() || is_archive() ) {
-		$attr['itemprop']  = 'itemprop';
-		$attr['itemscope'] = 'itemscope';
-		$attr['itemtype']  = 'http://schema.org/Blog';
-	}
-
-	elseif ( is_search() ) {
-		$attr['itemscope'] = 'itemscope';
-		$attr['itemtype']  = 'http://schema.org/SearchResultsPage';
-	}
+	if ( !is_singular( 'post' ) && !is_home() && !is_archive() )
+		$attr['itemprop'] = 'mainContentOfPage';
 
 	return $attr;
 }
@@ -184,13 +183,11 @@ function dahz_attr_content( $attr ) {
  */
 function dahz_attr_sidebar( $attr, $context ) {
 
-	if ( !empty( $context ) )
-		$attr['id'] = "sidebar-{$context}";
-
 	$attr['class']     = 'df-sidebar';
 	$attr['role']      = 'complementary';
 
 	if ( !empty( $context ) ) {
+		$attr['id'] = "sidebar-{$context}";
 		/* Translators: The %s is the sidebar name. This is used for the 'aria-label' attribute. */
 		$attr['aria-label'] = esc_attr( sprintf( _x( '%s Sidebar', 'sidebar aria label', 'dahztheme' ), dahz_get_sidebar_name( $context ) ) );
 	}
@@ -212,13 +209,11 @@ function dahz_attr_sidebar( $attr, $context ) {
  */
 function dahz_attr_menu( $attr, $context ) {
 
-	if ( !empty( $context ) )
-		$attr['id'] = "menu-{$context}";
-
 	$attr['class']      = 'main-navigation';
 	$attr['role']       = 'navigation';
 
 	if ( !empty( $context ) ) {
+		$attr['id'] = "menu-{$context}";
 		/* Translators: The %s is the menu name. This is used for the 'aria-label' attribute. */
 		$attr['aria-label'] = esc_attr( sprintf( _x( '%s Menu', 'nav menu aria label', 'dahztheme' ), dahz_get_menu_location_name( $context ) ) );
 	}
@@ -230,6 +225,20 @@ function dahz_attr_menu( $attr, $context ) {
 }
 
 /* === header === */
+
+/**
+ * <head> attributes.
+ *
+ * @since  3.0.0
+ * @access public
+ * @param  array   $attr
+ * @return array
+ */
+function dahz_attr_head( $attr ) {
+	$attr['itemscope'] = 'itemscope';
+	$attr['itemtype']  = 'http://schema.org/WebSite';
+	return $attr;
+}
 
 /**
  * Branding (usually a wrapper for title and tagline) attributes.
@@ -358,7 +367,11 @@ function dahz_attr_post( $attr ) {
 		if ( 'post' === get_post_type() ) {
 
 			$attr['itemtype']  = 'http://schema.org/BlogPosting';
-			$attr['itemprop']  = 'blogPost';
+
+			/* Add itemprop if within the main query. */
+			if ( is_main_query() && !is_search() )
+				$attr['itemprop'] = 'blogPost';
+	
 		}
 
 		elseif ( 'attachment' === get_post_type() && wp_attachment_is_image() ) {
