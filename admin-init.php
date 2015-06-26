@@ -61,6 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         require_once DF_FUNCTION_DIR . 'get-options.php';
         require_once DF_FUNCTION_DIR . 'basic.php';
         require_once DF_FUNCTION_DIR . 'data-head.php';
+        require_once DF_FUNCTION_DIR . 'l10n.php';
         require_once DF_FUNCTION_DIR . 'attr.php';
         require_once DF_FUNCTION_DIR . 'post-formats.php';
         require_once DF_FUNCTION_DIR . 'template.php';
@@ -71,14 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         require_once DF_EXTENSION_DIR . 'aqua-resizer.php';
         require_once DF_EXTENSION_DIR . 'get-the-image.php';
 
-        /** Customizer Setup */
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'helpers/sanitization.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-builder.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-options.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-scripts.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-base.php';
-        /** Backup Import / Export */
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-backup.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'customize-bundled.php';
 
         /* Admin Screen */
         require_once DF_CORE_DIR . 'screen/dahz-screen-admin-base.php';

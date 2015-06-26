@@ -15,29 +15,14 @@
 /*-----------------------------------------------------------------------------------
 
 TABLE OF CONTENTS - FUNCTIONS/BASIC.PHP
-
-- text domain
+- grab nav menu theme location name
+- grab dynamic sidebar name
 - suffix for minified
 - convert hex to rgba
 - Word Trim function
 
 
 -----------------------------------------------------------------------------------*/
-if ( ! function_exists( 'dahz_load_textdomain' ) ) {
-/**
- * Load the theme's textdomain, as well as an optional child theme textdomain.
- * @since  1.0.0
- * @return void
- */
-function dahz_load_textdomain () {
-  load_theme_textdomain( 'dahztheme' );
-  load_theme_textdomain( 'dahztheme', get_template_directory() . '/includes/lang' );
-  if ( function_exists( 'load_child_theme_textdomain' ) )
-    load_child_theme_textdomain( 'dahztheme' );
-} // End df_load_textdomain()
-}
-
-add_action( 'init', 'dahz_load_textdomain', 10 );
 
 
 /**
@@ -106,13 +91,13 @@ function dahz_comment_reply() {
   if ( is_singular() && get_option( 'thread_comments' ) && comments_open() ) wp_enqueue_script( 'comment-reply' );
 } // End dahz_comment_reply()
 }
-
 add_action( 'wp_enqueue_scripts', 'dahz_comment_reply', 5 );
 
 
-/* ----------------------------------------------------------------------------------- */
-/* Convert Hex to RGBA                                                                  */
-/* ----------------------------------------------------------------------------------- */
+/**
+ * Convert Hex to RGBA 
+ * @since  1.0.0 
+ */
 if (!function_exists('df_convert_rgba')) {
 
     function df_convert_rgba($color, $opacity) {
@@ -127,6 +112,7 @@ if (!function_exists('df_convert_rgba')) {
     }
 
 }
+
 
 /**
  * Word Trim function
