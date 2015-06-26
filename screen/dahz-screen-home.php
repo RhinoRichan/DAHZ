@@ -40,7 +40,6 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 		$cf = apply_filters('dahz_screen_config', array());
 		$intro = 'Thanks for installing! ' . $ct->display( 'Name' ) . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio,
 		 corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?';
-		 echo $cf['theme_content'];
 		?>
 		<div class="dahz-welcome-panel">
 		<h2><?php echo sprintf( __( 'Welcome to %s', 'dahztheme' ), '<span class="theme-name">' . $ct->display( 'Name' ) . '</span>' ); ?></h2>
@@ -51,7 +50,7 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 		<p class="theme-description"> 
 		<?php echo ( $cf['theme_description'] != '' ? $cf['theme_description'] : $intro ); ?> 
 		</p>
-		<?php $this->_theme_meta(); ?>
+		<?php #$this->_theme_meta(); ?>
 		</div>
 		<hr>
 		<?php $this->_theme_content(); ?>
