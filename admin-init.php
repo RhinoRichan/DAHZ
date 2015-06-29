@@ -1,26 +1,26 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-  exit; 
+  exit;
 }
 
 /**
  * Dahz Framework - A WordPress theme development framework.
  * @package   DahzFramework
- * @version   2.0.0-alpha
+ * @version   2.0.0-beta
  * @author    Dahz
  * @copyright Copyright (c) 2015, Dahz
  */
 
     /**
-     * Defines the constant paths for use within the core framework, parent theme, and child theme.  
-     * Constants prefixed with 'DF_' are for use only within the core framework and don't 
+     * Defines the constant paths for use within the core framework, parent theme, and child theme.
+     * Constants prefixed with 'DF_' are for use only within the core framework and don't
      * reference other areas of the parent or child theme.
      *
      * @since 1.0.0
      */
         /* Sets the framework version number. */
-        define('DF_VERSION', '2.0.0-alpha');
+        define('DF_VERSION', '2.0.0-beta');
 
         /* Sets the path to the parent theme directory. */
         define('THEME_DIR', get_template_directory());
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         /* Sets the path to the core framework extensions directory. */
         define('DF_EXTENSION_DIR', trailingslashit( trailingslashit( DF_CORE_DIR ) . 'extensions' ));
-        
+
         /* Sets the path to the core framework functions directory. */
         define('DF_FUNCTION_DIR', trailingslashit( trailingslashit( DF_CORE_DIR ) . 'functions' ));
 
@@ -96,11 +96,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     function get_theme_framework_version_data() {
 
         $response = array(
-            'theme_version' => '', 
-            'theme_name' => '', 
-            'framework_version' => get_option( 'df_framework_version' ), 
-            'is_child' => is_child_theme(), 
-            'child_theme_version' => '', 
+            'theme_version' => '',
+            'theme_name' => '',
+            'framework_version' => get_option( 'df_framework_version' ),
+            'is_child' => is_child_theme(),
+            'child_theme_version' => '',
             'child_theme_name' => ''
             );
 
@@ -108,7 +108,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           $theme_data = wp_get_theme();
           if ( true == $response['is_child'] ) {
             $response['theme_version'] = $theme_data->parent()->Version;
-            $response['theme_name'] = $theme_data->parent()->Name; 
+            $response['theme_name'] = $theme_data->parent()->Name;
 
             $response['child_theme_version'] = $theme_data->Version;
             $response['child_theme_name'] = $theme_data->Name;
