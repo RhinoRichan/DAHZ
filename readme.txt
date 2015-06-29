@@ -1,40 +1,35 @@
-# Theme Customizer UI Design & Theme Framework Technology Inspiration #
-- WordPress 
-- Semantic UI
-- Google Material Design
-- Hybrid Framework
-- WooFramework
-
 ** DahzFramework Changelog **
 
-Version 2.0.0 == on Development
-* added: support custom css section for theme
+Version 2.0.0
+* added: data-head.php more cleanup output site data to head.
+* added: li0n.php for Localization.
+* added: support custom css section for theme.
 * added: prefix class Dahz_ (folder customizer/*, screen/*).
 * added: Admin Screen Branding.
 * added: register_control_type in some customizer custom control.
-* added: new method content_template in customizer custom control. 
+* added: new method content_template in customizer custom control.
 * added: apply_filters('df_options_default_setting'), by making the return valuable filterable, the Theme defaults can be easily overridden by a Child Theme or Plugin.
 * updated: get-the-image.php extensions
 * remove: store option customizer to DB, because if user switch theme is rollback to default.
 
 Version 1.5.0
 * added $control['id'] control customizer
-* added sanitize callback for theme customizer 
+* added sanitize callback for theme customizer
 * added file dahz/customizer/dahz-customizer-scripts.php
 * added file dahz/customizer/dahz-customizer-options.php
 * added file dahz/customizer/helpers/sanitization.php
 * remove rwmb-metabox from folder core use plugin instead.
 
-Version 1.4.0 
+Version 1.4.0
  * Set breadcrumbs to class function
 
 Version 1.3.1
  * update empty option automatically when theme activate. (dahz/customizer/admin-customizer.php)
  * add function array_of_control use the default WordPress Core Customizer fields when possible and only add our own custom controls when needed. (dahz/customizer/controls/class-DahzFramework_Controls.php)
- * return bool doing ajax when theme is customizing 
+ * return bool doing ajax when theme is customizing
 
 Version 1.3.0
- * add backward compatibilty wp_title() 
+ * add backward compatibilty wp_title()
  * add extensions folder
  * add customizer radiobox custom control
  * add customizer checkbox custom control
