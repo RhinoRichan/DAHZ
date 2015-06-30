@@ -93,6 +93,21 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
     add_action( 'dahz_theme_activate', 'dahz_redirect_after_activate', 10 );
 
+    /**
+     * Enqueue menu.css.
+     * Used to control the display of DahzFramework menu items across the dashboard
+     * @since  2.0.0
+     * @return void
+     */
+    function dahz_menu_styles() {
+    	$token = 'dahz';
+
+    	wp_register_style( $token . '-menu', esc_url( DF_CORE_CSS_DIR . 'menu.css' ), array(), DF_VERSION );
+    	wp_enqueue_style( $token . '-menu' );
+    }
+
+    add_action( 'admin_enqueue_scripts', 'dahz_menu_styles' );
+
     function get_theme_framework_version_data() {
 
         $response = array(

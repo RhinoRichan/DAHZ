@@ -13,11 +13,11 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 		parent::__construct();
 
 		add_action('admin_menu', array( $this, 'admin_menus' ) );
-		
+
 	}
 
 	function admin_menus(){
-	   add_menu_page( 'dahzframework', $this->theme_data['theme_name'], 'manage_options', 'dahzframework', array($this, 'home_screen'), 'dashicons-admin-network', 3 );
+	   add_menu_page( 'dahzframework', $this->theme_data['theme_name'], 'manage_options', 'dahzframework', array($this, 'home_screen'), NULL, 3 );
 	   //add_object_page( 'dahzframework', $this->theme_data['theme_name'], 'manage_options', 'dahzframework', array($this, 'home_screen'), 'dashicons-admin-network' );
 	   $home = add_submenu_page( 'dahzframework', $this->theme_data['theme_name'], 'Home', 'manage_options', 'dahzframework', array($this, 'home_screen') );
        do_action( 'dahz_screen_menu' );
@@ -47,8 +47,8 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 			<img src="<?php echo $cf['theme_badge']; ?>" alt="theme badge">
 			<p><?php printf( __( 'Version %s', 'dahztheme' ), '<strong>' . $ct->__get( 'Version' ) . '</strong>' ); ?></p>
 		</div>
-		<p class="theme-description"> 
-		<?php echo ( $cf['theme_description'] != '' ? $cf['theme_description'] : $intro ); ?> 
+		<p class="theme-description">
+		<?php echo ( $cf['theme_description'] != '' ? $cf['theme_description'] : $intro ); ?>
 		</p>
 		<?php #$this->_theme_meta(); ?>
 		</div>
@@ -83,12 +83,12 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 	function _theme_content() {
         ob_start(); ?>
         <div class="row group">
-        <div class="col two-col">        
+        <div class="col two-col">
         <h3>Title</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p>
  		</div>
-        <div class="col two-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col two-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div>
  		</div>
 
@@ -97,30 +97,30 @@ class Dahz_screen_home extends Dahz_screen_admin_base
         <div class="col three-col">
         <div class="padded">
         <h3>Title</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p>
  		</div></div>
-        <div class="col three-col"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div></div>
-        <div class="col three-col"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><div class="padded"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div></div>
  		</div>
  		</div>
 
  		<div class="row group">
-        <div class="col three-col">        
+        <div class="col three-col">
         <h3>Title</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p>
  		</div>
-        <div class="col three-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div>
-        <div class="col three-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque? 
+        <div class="col three-col"><h3>Title</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio, corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?
  		Fuga ea placeat, architecto voluptates reprehenderit. Iure vitae temporibus maiores perspiciatis! </p></div>
  		</div>
         <?php
         $output = ob_get_contents(); ob_end_clean();
-        echo apply_filters('home_screen_content', $output);      
+        echo apply_filters('home_screen_content', $output);
 	}
 
 }
