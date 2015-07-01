@@ -73,6 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         require_once DF_EXTENSION_DIR . 'get-the-image.php';
 
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'customize-bundled.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-options.php';
 
         /* Admin Screen */
         require_once DF_CORE_DIR . 'screen/dahz-screen-admin-base.php';
