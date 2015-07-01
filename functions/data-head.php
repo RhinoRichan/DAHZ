@@ -1,6 +1,6 @@
 <?php
 /**
- * Dahz Framework output site data to `<head>`.
+ * Dahz Framework output site data to 'head' tag.
  *
  * @package WordPress
  * @subpackage  DahzFramework
@@ -11,7 +11,7 @@
 
 /**
  * Output Meta Content Function
- * 
+ *
  * @return void
  * @since  1.0.0
  */
@@ -34,9 +34,9 @@ add_action( 'dahz_meta', 'dahz_meta_charset', 0 );
 
 
 /**
- * Load responsive <meta> tags in the <head> 
+ * Load responsive <meta> tags in the <head>
  * @since 2.0.0
- * 
+ *
  */
 function dahz_meta_viewport() {
         $html = '';
@@ -67,7 +67,7 @@ add_action( 'dahz_meta', 'dahz_link_pingback',  2 );
 if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 /**
  * Backward Compatibilty wp_title()
- * 
+ *
  * @return type
  * @since  1.2.1
  */
