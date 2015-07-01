@@ -15,17 +15,20 @@ class DAHZ_Layout_Picker_Control extends WP_Customize_Control
 {
 
       public $type = 'images_radio';
-      
+
       public function enqueue() {
         wp_enqueue_script( 'dahz-api-controls' );
       }
-      
+
       public function to_json(){
         parent::to_json();
 
         // We need to make sure we have the correct image URL.
-       foreach ( $this->choices as $value => $args )
-          $this->choices[ $value ]['url'] = esc_url( sprintf( $args['url'], get_template_directory_uri(), get_stylesheet_directory_uri() ) );
+        foreach ( $this->choices as $value => $args ){
+           if(isset( $this->choices[ $value ]['url'] )){
+             $this->choices[ $value ]['url'] = esc_url( sprintf( $args['url'], get_template_directory_uri(), get_stylesheet_directory_uri() ) );
+           }
+         }
 
           $this->json['choices'] = $this->choices;
           $this->json['link']    = $this->get_link();
@@ -35,7 +38,7 @@ class DAHZ_Layout_Picker_Control extends WP_Customize_Control
 
       /**
        * Underscore JS template to handle the control's output.
-       * 
+       *
        * @since 2.0.0
        * @return void
        */
