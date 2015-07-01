@@ -53,7 +53,7 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 		<?php #$this->_theme_meta(); ?>
 		</div>
 		<hr>
-		<?php $this->_theme_content(); ?>
+		<?php $cf['theme_content'] != '' ?  call_user_func( $cf['theme_content'] ) : $this->_theme_content(); ?>
 		 <?php
 	}
 

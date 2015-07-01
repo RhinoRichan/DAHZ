@@ -1,6 +1,7 @@
 ** DahzFramework Changelog **
 
 Version 2.0.0
+* added: use call_user_func() for callback theme content admin home screen.
 * added: data-head.php more cleanup output site data to head.
 * added: li0n.php for Localization.
 * added: support custom css section for theme.
