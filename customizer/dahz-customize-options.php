@@ -55,7 +55,9 @@ class Dahz_Customizer_Options
 
       $saved = ( get_option('df_options') ) ? get_option('df_options') : null;
 
-      $options = wp_parse_args( $saved, self::getOptionDefault() );
+      $default = apply_filters( 'df_options_set_default', array() );
+
+      $options = wp_parse_args( $saved, $default );
 
       $mod = apply_filters( 'df_options_get_mod', $options, $name );
 

@@ -1,11 +1,11 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-  exit; 
+  exit;
 }
 
 /**
-* Global Option Customizer 
+* Global Option Customizer
 * Get theme’s settings from database with df_options('theme_settings').
 * @see Dahz_Customizer_Options::getOptionSetting()
 * @param array $name
