@@ -57,8 +57,6 @@ if ( ! defined( 'ABSPATH' ) ) {
         /* Sets the path to the core framework images directory URI. */
         define('DF_CORE_IMG_DIR', trailingslashit( trailingslashit( DF_CORE_URI ) . 'images' ));
 
-
-        require_once DF_FUNCTION_DIR . 'get-options.php';
         require_once DF_FUNCTION_DIR . 'basic.php';
         require_once DF_FUNCTION_DIR . 'data-head.php';
         require_once DF_FUNCTION_DIR . 'l10n.php';
