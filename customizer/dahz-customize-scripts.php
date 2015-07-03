@@ -17,8 +17,11 @@ class Dahz_Customizer_Scripts {
 
     $this->suffix = dahz_get_min_suffix();
 
-    add_action('customize_controls_enqueue_scripts', array($this, 'EnqueueScripts'));
+    add_action('after_setup_theme', array($this, 'load_customize_scripts'));
+  }
 
+  function load_customize_scripts(){
+    add_action('customize_controls_enqueue_scripts', array($this, 'EnqueueScripts'));
     //register custom control scripts
     add_action('customize_controls_enqueue_scripts', array($this, 'customize_controls_register_script'), 5);
   }
