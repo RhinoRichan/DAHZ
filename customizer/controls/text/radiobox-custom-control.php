@@ -45,13 +45,13 @@ class DAHZ_Radiobox_Control extends WP_Customize_Control
 			<?php endif; ?>
 			</span>
 		<?php endif; ?>
-        
 
-		<div id="input_<?php echo $ids; ?>" class="<?php echo $this->mode; ?>">
+
+		<div id="input_<?php echo $ids; ?>" class="df-radio-control-<?php echo $this->mode; ?>">
 
 		<?php // Radio Button
 		 if ( 'buttonset' == $this->mode ) : ?>
-		
+
 		<?php foreach ( $this->choices as $value => $label ) : ?>
 			<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" id="<?php echo $this->id . $value; ?>" <?php $this->link(); checked( $this->value(), $value ); ?>>
 				<label for="<?php echo $this->id . $value; ?>">
@@ -59,7 +59,7 @@ class DAHZ_Radiobox_Control extends WP_Customize_Control
 				</label>
 			</input>
 		<?php endforeach; ?>
-		
+
 		<?php // Radio Image
 		 elseif( 'image' == $this->mode ) : ?>
 
@@ -84,14 +84,6 @@ class DAHZ_Radiobox_Control extends WP_Customize_Control
   	   <?php endif; ?>
 
 		</div>
-
-		<?php if ( 'buttonset' == $this->mode || 'image' == $this->mode ) : ?>
-			<script>
-			jQuery(document).ready(function($) {
-				$( '[id="input_<?php echo $ids; ?>"]' ).buttonset();
-			});
-			</script>
-		<?php endif; ?>
 
 		<?php
 	}
