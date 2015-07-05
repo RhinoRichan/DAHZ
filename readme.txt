@@ -11,7 +11,8 @@ Version 2.0.0
 * added: new method content_template in customizer custom control.
 * added: apply_filters('df_options_default_setting'), by making the return valuable filterable, the Theme defaults can be easily overridden by a Child Theme or Plugin.
 * updated: get-the-image.php extensions
-* remove: store option customizer to DB, because if user switch theme is rollback to default.
+* removed: store option customizer to DB, because if user switch theme is rollback to default.
+* removed: dahz_meta() function deprecated.
 
 Version 1.5.0
 * added $control['id'] control customizer

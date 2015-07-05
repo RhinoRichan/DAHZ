@@ -73,10 +73,12 @@ if ( ! defined( 'ABSPATH' ) ) {
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'customize-bundled.php';
 
         /* Admin Screen */
+        if ( is_admin() ) {
         require_once DF_CORE_DIR . 'screen/dahz-screen-admin-base.php';
         require_once DF_CORE_DIR . 'screen/dahz-screen-home.php';
         require_once DF_CORE_DIR . 'screen/dahz-screen-addons.php';
         require_once DF_CORE_DIR . 'screen/dahz-screen-backup.php';
+        }
 
 
     if ( ! function_exists( 'dahz_redirect_after_activate' ) ) {
@@ -105,63 +107,3 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
 
     add_action( 'admin_enqueue_scripts', 'dahz_menu_styles' );
-
-    function get_theme_framework_version_data() {
-
-        $response = array(
-            'theme_version' => '',
-            'theme_name' => '',
-            'framework_version' => get_option( 'df_framework_version' ),
-            'is_child' => is_child_theme(),
-            'child_theme_version' => '',
-            'child_theme_name' => ''
-            );
-
-        if ( function_exists( 'wp_get_theme' ) ) {
-          $theme_data = wp_get_theme();
-          if ( true == $response['is_child'] ) {
-            $response['theme_version'] = $theme_data->parent()->Version;
-            $response['theme_name'] = $theme_data->parent()->Name;
-
-            $response['child_theme_version'] = $theme_data->Version;
-            $response['child_theme_name'] = $theme_data->Name;
-          } else {
-            $response['theme_version'] = $theme_data->Version;
-            $response['theme_name'] = $theme_data->Name;
-          }
-        } else {
-          $theme_data = wp_get_theme(trailingslashit( CHILD_THEME_DIR ).'style.css');
-          $response['theme_version'] = $theme_data['Version'];
-          $response['theme_name'] = $theme_data['Name'];
-
-          if ( true == $response['is_child'] ) {
-            $theme_data = wp_get_theme(trailingslashit( CHILD_THEME_DIR ).'style.css');
-            $response['child_theme_version'] = $theme_data['Version'];
-            $response['child_theme_name'] = $theme_data['Name'];
-          }
-        }
-
-        return $response;
-
-    }
-
-    function get_theme_framework_version_init() {
-
-          $df_framework_version = DF_VERSION;
-          if ( get_option( 'df_framework_version' ) != $df_framework_version ) {
-            update_option( 'df_framework_version', $df_framework_version );
-          }
-
-    }
-      add_action( 'init', 'get_theme_framework_version_init', 10 );
-
-    function dahz_framework_version() {
-
-        $data = get_theme_framework_version_data();
-        echo "\n<!-- Theme version -->\n";
-        if ( isset( $data['is_child'] ) && true == $data['is_child'] ) echo '<meta name="generator" content="'. esc_attr( $data['child_theme_name'] . ' ' . $data['child_theme_version'] ) . '" />' ."\n";
-        echo '<meta name="generator" content="'. esc_attr( $data['theme_name'] . ' ' . $data['theme_version'] ) . '" />' ."\n";
-        echo '<meta name="generator" content="DahzFramework '. esc_attr( DF_VERSION ) .'" />' ."\n";
-
-    }
-      add_action( 'wp_head', 'dahz_framework_version', 10 );
