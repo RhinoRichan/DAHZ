@@ -49,6 +49,7 @@ class Dahz_Customizer_Base
 
     global $pagenow;
     if ( is_admin() && isset( $_GET['activated'] ) && $pagenow == 'themes.php' ) {
+    //  add_action('admin_head', array($this, 'df_customizer_option_setup'));
       // Flush rewrite rules.
      add_action( 'admin_head', array( $this, 'isFlushRewriterules'), 9 );
 
@@ -69,6 +70,27 @@ class Dahz_Customizer_Base
   function regAdminMenu(){
      add_submenu_page('dahzframework', 'Customize', 'Customize', 'edit_theme_options', 'customize.php', NULL );
   }
+
+
+  /**
+   * Update theme Customizer in database with options as stored in theme.
+   * @since  1.0
+   * @return void
+   */
+  function df_customizer_option_setup () {
+    //Update EMPTY options
+    $controls = array();
+    add_option( 'df_options', $controls );
+
+    $controls = Dahz_Customizer_Builder::$instance -> getAllControl();
+
+    foreach ( $controls as $key => $value ) {
+       $key                = $value['setting'];
+       $need_options[$key] = maybe_unserialize( $value['default'] );
+    }
+    update_option( 'df_options', $need_options ) ;
+
+  } // End df_customizer_option_setup()
 
 
   /**
