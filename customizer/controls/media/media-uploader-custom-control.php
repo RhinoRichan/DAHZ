@@ -14,21 +14,21 @@ class DAHZ_Media_Uploader_Control extends WP_Customize_Control {
     public function __construct( $manager, $id, $args ) {
         parent::__construct( $manager, $id, $args );
     }
-		
-		
-	public function enqueue() {	
+
+
+	public function enqueue() {
 		wp_enqueue_style('media-upload');
-		wp_enqueue_style('thickbox');	
-		wp_register_script( 'customize-media-uploader', DF_CORE_JS_DIR . 'customizer-media-uploader.js', array('jquery', 'media-upload', 'thickbox', 'wp-plupload'), false, true);
+		wp_enqueue_style('thickbox');
+		wp_register_script( 'customize-media-uploader', DF_CORE_JS_DIR . 'customizer-media-uploader.js', array('jquery', 'media-upload', 'thickbox'), false, true);
 		wp_localize_script('customize-media-uploader', '_uploader', array('id' => $this->id) );
 		wp_enqueue_script( 'customize-media-uploader' );
 	}
 
-	
+
 	public function render_content() {
 			$src = $this->value();
 			if( isset( $this->get_url ) )
-				$src =  $this->get_url;	
+				$src =  $this->get_url;
 			?>
     <div id="md-upload-wrap" class="customize-media-uploader">
 			<span class="customize-control-title">
@@ -37,14 +37,14 @@ class DAHZ_Media_Uploader_Control extends WP_Customize_Control {
 			<i data-content="<?php echo $this->description; ?>" data-position="bottom right" data-offset="10" class="icon tooltip"></i>
 			<?php endif; ?>
 			</span>
-            
+
 			<a class="button-secondary" id="media-uploader" href="#">Upload</a>
 			<div class="md-upload-current-image">
 	            <input <?php $this->link(); ?> type="hidden" value="<?php echo $src; ?>">
             	<div>
-						<?php if ( empty( $src ) ): 
+						<?php if ( empty( $src ) ):
 							$style = "display:none;";
-						else: 
+						else:
 							$style = "display:inline-block;";
 						?>
 							<img src="<?php echo esc_url( set_url_scheme( $src ) ); ?>">
@@ -57,14 +57,3 @@ class DAHZ_Media_Uploader_Control extends WP_Customize_Control {
 		}
 
 }
-
-
-
-
-	
-
-
-
-
-
-    
