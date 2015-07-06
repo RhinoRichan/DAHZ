@@ -21,11 +21,15 @@ class Dahz_Customizer_Builder {
 
 		self::$instance =& $this;
 
+		add_action('after_setup_theme', array( $this, 'set_customizer' ) );
+	}
+
+	public function set_customizer(){
+		add_action('customize_register', array( $this, 'regControlType' ), 99);
 		add_action('customize_register', array( $this, 'isBuildCustomizer' ), 99 );
 	}
 
 	public function isBuildCustomizer($wp_customize) {
-    $control_types = $this->regControlType($wp_customize);
 		$controls = $this->getAllControl();
 		$this->settings = new Dahz_Customize_Settings();
 		$this->controls = new Dahz_Customize_Controls();
