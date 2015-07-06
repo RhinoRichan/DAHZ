@@ -70,7 +70,15 @@ if ( ! defined( 'ABSPATH' ) ) {
         require_once DF_EXTENSION_DIR . 'aqua-resizer.php';
         require_once DF_EXTENSION_DIR . 'get-the-image.php';
 
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'customize-bundled.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'helpers/sanitization.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-scripts.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-builder.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-controls.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-settings.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-base.php';
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-options.php';
+        /* Backup Import / Export */
+        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-backup.php';
 
         /* Admin Screen */
         if ( is_admin() ) {

@@ -76,6 +76,3 @@ class Dahz_Customizer_Builder {
 
 }
 new Dahz_Customizer_Builder;
-
-require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-controls.php';
-require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-settings.php';
