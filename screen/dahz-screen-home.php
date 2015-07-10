@@ -18,7 +18,6 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 
 	function admin_menus(){
 	   add_menu_page( 'dahzframework', $this->theme_data['theme_name'], 'manage_options', 'dahzframework', array($this, 'home_screen'), NULL, 3 );
-	   //add_object_page( 'dahzframework', $this->theme_data['theme_name'], 'manage_options', 'dahzframework', array($this, 'home_screen'), 'dashicons-admin-network' );
 	   $home = add_submenu_page( 'dahzframework', $this->theme_data['theme_name'], 'Home', 'manage_options', 'dahzframework', array($this, 'home_screen') );
        do_action( 'dahz_screen_menu' );
 
