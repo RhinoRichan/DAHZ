@@ -9,6 +9,12 @@
  * @since  2.0.0
  */
 
+add_action( 'wp_head', 'dahz_meta_charset', 0 );
+add_action( 'wp_head', 'dahz_meta_viewport', 1 );
+add_action( 'wp_head', 'dahz_link_pingback',  2 );
+add_action( 'wp_head', 'dahz_render_title' );
+add_action( 'init', 'get_theme_framework_version_init', 10 );
+add_action( 'wp_head', 'dahz_framework_version', 10 );
 
 /**
  * Adds the meta charset to the header.
@@ -20,7 +26,6 @@
 function dahz_meta_charset() {
 	printf( '<meta charset="%s" />' . "\n", esc_attr( get_bloginfo( 'charset' ) ) );
 }
-add_action( 'wp_head', 'dahz_meta_charset', 0 );
 
 
 /**
@@ -35,9 +40,7 @@ function dahz_meta_viewport() {
         $html .= '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">' . "\n";
 
         echo $html;
-}
-// End dahz_meta_viewport()
-add_action( 'wp_head', 'dahz_meta_viewport', 1 );
+}// End dahz_meta_viewport()
 
 
 /**
@@ -51,7 +54,6 @@ function dahz_link_pingback() {
 	if ( 'open' === get_option( 'default_ping_status' ) )
 		printf( '<link rel="pingback" href="%s" />' . "\n", esc_url( get_bloginfo( 'pingback_url' ) ) );
 }
-add_action( 'wp_head', 'dahz_link_pingback',  2 );
 
 
 if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
@@ -67,7 +69,6 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) {
    <title><?php wp_title('|', true, 'right'); ?></title>
   <?php
   }
-  add_action( 'wp_head', 'dahz_render_title' );
 }
 endif;
 
@@ -87,6 +88,7 @@ if ( ! function_exists( 'df_add_blog_name_to_title' ) ) {
     return $title;
   } // End df_add_blog_name_to_title()
 }
+
 
 if ( ! function_exists( 'df_maybe_add_page_number_to_title' ) ) {
 /**
@@ -170,7 +172,6 @@ function get_theme_framework_version_init() {
       }
 
 }
-  add_action( 'init', 'get_theme_framework_version_init', 10 );
 
 /**
  * Framework version
@@ -184,4 +185,3 @@ function dahz_framework_version() {
     echo '<meta name="generator" content="DahzFramework '. esc_attr( DF_VERSION ) .'" />' ."\n";
 
 }
-  add_action( 'wp_head', 'dahz_framework_version', 10 );
