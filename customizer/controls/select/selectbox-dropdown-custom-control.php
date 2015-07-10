@@ -15,24 +15,25 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
     public $direction = ''; // upward, down
 
     public function enqueue() {
-     wp_enqueue_style( 'customize-semantic-dropdown', DF_CORE_CSS_DIR . 'dropdown.css', null, null);       
+    $suffix = dahz_get_min_suffix();
+     wp_enqueue_style( 'customize-semantic-dropdown', DF_CORE_CSS_DIR . 'dropdown'.$suffix.'.css', null, null);       
     }
 
     /**
      * Render the content on the theme customizer page
      */
     public function render_content() {
-      
+
           if ( empty( $this->choices ) )
           return;
 
-        
+
         $ids  = $this->id;
         $name = '_customize-select-' . $ids;
         $dir = $this->direction;
 
         ?>
-        
+
         <label>
         <?php if ( ! empty( $this->label ) ) : ?>
             <span class="customize-control-title">
@@ -45,8 +46,8 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
             </span>
           <?php endif; ?>
         </label>
-         
-        
+
+
         <?php if( 'search' == $this->mode ): ?>
 
         <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="ui search selection dropdown <?php echo $dir; ?>" id="search-select_<?php echo $ids; ?>">
@@ -64,7 +65,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
         </select>
 
         <?php endif; ?>
-       
+
 
         <?php if('search' == $this->mode): ?>
           <script>
