@@ -25,6 +25,8 @@ class Dahz_Customizer_Builder {
 	}
 
 	public function set_customizer(){
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-controls.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-settings.php';
 		add_action('customize_register', array( $this, 'regControlType' ), 99);
 		add_action('customize_register', array( $this, 'isBuildCustomizer' ), 99 );
 	}

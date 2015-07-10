@@ -51,9 +51,9 @@ class Dahz_Customizer_Options
    * @param  boolean $default
    * @return mixed
    */
-  public static function getOptionSetting($name){
+  public static function getOptionSetting($name, $default = false){
 
-      $saved = ( get_option('df_options') ) ? get_option('df_options') : null;
+      $saved = get_option('df_options');
 
       $default = apply_filters( 'df_options_set_default', array() );
 
@@ -63,6 +63,8 @@ class Dahz_Customizer_Options
 
       if (isset( $mod[$name] )) {
           return $mod[$name];
+      } else {
+        return $default;
       }
 
   }
@@ -118,6 +120,8 @@ class Dahz_Customizer_Options
 
 }
 
+
+if(!function_exists('df_options')) :
 /**
 * Global Option Customizer
 * Get theme’s settings from database with df_options('theme_settings').
@@ -125,17 +129,20 @@ class Dahz_Customizer_Options
 * @param array $name
 * @return mixed
 */
-function df_options($name) {
-	$options = new Dahz_Customizer_Options();
-  	return $options::getOptionSetting($name);
-}
+  function df_options($name, $default = false) {
+  	$options = new Dahz_Customizer_Options();
+    	return $options::getOptionSetting($name, $default);
+  }
+endif;
 
+if(!function_exists('df_is_customizing')):
 /**
 * Returns a boolean on the customizer's state
 * @see Dahz_Customizer_Options::isCustomizerPreview()
 * @return boolean
 */
-function df_is_customizing() {
-	$preview = new Dahz_Customizer_Options();
-	return $preview::isCustomizerPreview();
-}
+  function df_is_customizing() {
+  	$preview = new Dahz_Customizer_Options();
+  	return $preview::isCustomizerPreview();
+  }
+endif;

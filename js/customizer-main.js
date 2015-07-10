@@ -71,7 +71,7 @@ customControls = {
 };
 
 // Load after Customizer initialization is complete.
-$(document).ready(function() {
+jQuery(document).ready(function() {
 	customControls.init();
 });
 

@@ -73,15 +73,13 @@ if ( ! defined( 'ABSPATH' ) ) {
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'helpers/sanitization.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-scripts.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-builder.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-controls.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-settings.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-base.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-options.php';
         /* Backup Import / Export */
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-backup.php';
 
         /* Admin Screen */
-        if ( is_admin() ) {
+        if ( is_admin() && !df_is_customizing() ) {
         require_once DF_CORE_DIR . 'screen/dahz-screen-admin-base.php';
         require_once DF_CORE_DIR . 'screen/dahz-screen-home.php';
         require_once DF_CORE_DIR . 'screen/dahz-screen-addons.php';
@@ -108,6 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) {
      * @return void
      */
     function dahz_menu_styles() {
+      if( df_is_customizing() ) return;
     	$token = 'dahz';
 
     	wp_register_style( $token . '-menu', esc_url( DF_CORE_CSS_DIR . 'menu.css' ), array(), DF_VERSION );

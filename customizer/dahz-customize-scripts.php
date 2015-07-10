@@ -32,7 +32,7 @@ class Dahz_Customizer_Scripts {
       do_action('dahz_enqueue_customizer_admin');
 
       wp_enqueue_script('dahz-semantic-ui', DF_CORE_JS_DIR . 'semantic.js', array('jquery', 'customize-controls'), false, true );
-      wp_enqueue_script('dahz-customizer-main', DF_CORE_JS_DIR . 'customizer-main'. $this->suffix .'.js', array('jquery', 'customize-controls'), false, true );
+      wp_enqueue_script('dahz-customizer-main', DF_CORE_JS_DIR . 'customizer-main'. $this->suffix .'.js', array('customize-controls', 'dahz-semantic-ui' ), false, true );
   }
 
   function customize_controls_register_script(){
