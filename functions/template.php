@@ -17,9 +17,9 @@
  * @access public
  * @return string
  */
-function dahz_get_template($composer, $base, $extension = '') {
+function dahz_get_template( $composer, $base, $extension = '' ) {
 
-        get_template_part('templates/' . $composer . '/' . $base, $extension);
+        get_template_part( 'templates/' . $composer . '/' . $base, $extension );
 }
 
 /**

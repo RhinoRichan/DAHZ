@@ -16,11 +16,12 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
 
     public function enqueue() {
     $suffix = dahz_get_min_suffix();
-     wp_enqueue_style( 'customize-semantic-dropdown', DF_CORE_CSS_DIR . 'dropdown'.$suffix.'.css', null, null);       
+     wp_enqueue_style( 'customize-semantic-dropdown', DF_CORE_CSS_DIR . 'dropdown'.$suffix.'.css', null, null);
     }
 
     /**
      * Render the content on the theme customizer page
+     * TODO: Use content_template func
      */
     public function render_content() {
 

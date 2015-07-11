@@ -1,5 +1,10 @@
 ** DahzFramework Changelog **
 
+Version 2.1.0
+* added: after_setup_theme admin screen and customizer control
+* changed: for template.php use folder templates 
+* Fixed: Bugs rendering customizer control
+
 Version 2.0.0
 * added: use call_user_func() for callback theme content admin home screen.
 * added: data-head.php more cleanup output site data to head.

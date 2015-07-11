@@ -18,10 +18,10 @@ class Dahz_screen_backup extends Dahz_screen_admin_base
 
 	function admin_menus(){
 		global $backup;
-	   $backup = add_submenu_page( 'dahzframework', 'Backup', 'Backup', 'manage_options', 'dahz-backup', array($this, 'backup_screen') );
+	   $backup = add_submenu_page( 'dahzframework', 'Backup', 'Backup', 'manage_options', 'dahz-backup', array( $this, 'backup_screen') );
 
-       add_action('admin_print_styles-'. $backup, array($this, 'admin_css'));
-       add_action('admin_enqueue_scripts', array($this, 'scripts'));
+       add_action( 'admin_print_styles-'. $backup, array( $this, 'admin_css') );
+       add_action( 'admin_enqueue_scripts', array( $this, 'scripts') );
 
 	}
 
@@ -47,12 +47,12 @@ class Dahz_screen_backup extends Dahz_screen_admin_base
 		<?php
 	}
 
-	function scripts($hook){
+	function scripts( $hook ){
 		global $backup;
 		if ( $hook != $backup ) {
 			return;
 		}
-    wp_enqueue_script('dahz-screen-backup', DF_CORE_JS_DIR . 'backup.js', array('jquery'), '28042014', true);
+    wp_enqueue_script( 'dahz-screen-backup', DF_CORE_JS_DIR . 'backup.js', array('jquery'), '28042014', true );
 	}
 
 }

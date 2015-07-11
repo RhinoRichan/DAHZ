@@ -12,7 +12,7 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 	function __construct() {
 		parent::__construct();
 
-		add_action('admin_menu', array( $this, 'admin_menus' ) );
+		add_action( 'admin_menu', array( $this, 'admin_menus' ) );
 
 	}
 
@@ -36,7 +36,7 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 
 	function _intro() {
 		$ct = $this->theme_obj;
-		$cf = apply_filters('dahz_screen_config', array());
+		$cf = apply_filters( 'dahz_screen_config', array() );
 		$intro = 'Thanks for installing! ' . $ct->display( 'Name' ) . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis molestias odio,
 		 corporis aut nulla fugiat! Distinctio voluptas, maiores eaque?';
 		?>

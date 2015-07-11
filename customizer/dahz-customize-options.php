@@ -51,9 +51,9 @@ class Dahz_Customizer_Options
    * @param  boolean $default
    * @return mixed
    */
-  public static function getOptionSetting($name, $default = false){
+  public static function getOptionSetting( $name, $default = false ){
 
-      $saved = get_option('df_options');
+      $saved = get_option( 'df_options' );
 
       $default = apply_filters( 'df_options_set_default', array() );
 
@@ -61,8 +61,8 @@ class Dahz_Customizer_Options
 
       $mod = apply_filters( 'df_options_get_mod', $options, $name );
 
-      if (isset( $mod[$name] )) {
-          return $mod[$name];
+      if (isset( $mod[ $name ] )) {
+          return $mod[ $name ];
       } else {
         return $default;
       }
@@ -97,7 +97,7 @@ class Dahz_Customizer_Options
   */
   private static function isCustomizePanel(){
      global $pagenow;
-     return is_admin() && isset($pagenow) && 'customize.php' == $pagenow;
+     return is_admin() && isset( $pagenow ) && 'customize.php' == $pagenow;
   }
 
 
@@ -106,7 +106,7 @@ class Dahz_Customizer_Options
   * @since  1.5.0
   */
   private static function isCustomizePreviewFrame(){
-    return ! is_admin() && isset($_REQUEST['wp_customize']);
+    return ! is_admin() && isset( $_REQUEST['wp_customize'] );
   }
 
 
@@ -115,7 +115,7 @@ class Dahz_Customizer_Options
   * @since  1.5.0
   */
   static function isCustomizeDoingAjax(){
-    return isset($_POST['customized']) && ( defined('DOING_AJAX') && DOING_AJAX );
+    return isset( $_POST['customized'] ) && ( defined( 'DOING_AJAX' ) && DOING_AJAX );
   }
 
 }
@@ -129,13 +129,13 @@ if(!function_exists('df_options')) :
 * @param array $name
 * @return mixed
 */
-  function df_options($name, $default = false) {
+  function df_options( $name, $default = false ) {
   	$options = new Dahz_Customizer_Options();
-    	return $options::getOptionSetting($name, $default);
+    	return $options::getOptionSetting( $name, $default );
   }
 endif;
 
-if(!function_exists('df_is_customizing')):
+if( ! function_exists( 'df_is_customizing' ) ):
 /**
 * Returns a boolean on the customizer's state
 * @see Dahz_Customizer_Options::isCustomizerPreview()

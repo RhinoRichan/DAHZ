@@ -17,13 +17,9 @@ class Dahz_Customizer_Scripts {
 
     $this->suffix = dahz_get_min_suffix();
 
-    add_action('after_setup_theme', array($this, 'load_customize_scripts'));
-  }
-
-  function load_customize_scripts(){
-    add_action('customize_controls_enqueue_scripts', array($this, 'EnqueueScripts'));
+    add_action('customize_controls_enqueue_scripts', array( $this, 'EnqueueScripts' ));
     //register custom control scripts
-    add_action('customize_controls_enqueue_scripts', array($this, 'customize_controls_register_script'), 5);
+    add_action('customize_controls_enqueue_scripts', array( $this, 'customize_controls_register_script' ), 5);
   }
 
   function EnqueueScripts() {
@@ -31,12 +27,12 @@ class Dahz_Customizer_Scripts {
       //HOOK
       do_action('dahz_enqueue_customizer_admin');
 
-      wp_enqueue_script('dahz-semantic-ui', DF_CORE_JS_DIR . 'semantic.js', array('jquery', 'customize-controls'), false, true );
-      wp_enqueue_script('dahz-customizer-main', DF_CORE_JS_DIR . 'customizer-main'. $this->suffix .'.js', array('customize-controls', 'dahz-semantic-ui' ), false, true );
+      wp_enqueue_script('dahz-semantic-ui', DF_CORE_JS_DIR . 'semantic.js', array( 'jquery', 'customize-controls' ), false, true );
+      wp_enqueue_script('dahz-customizer-main', DF_CORE_JS_DIR . 'customizer-main'. $this->suffix .'.js', array( 'customize-controls', 'dahz-semantic-ui' ), false, true );
   }
 
   function customize_controls_register_script(){
-      wp_register_script('dahz-api-controls', DF_CORE_JS_DIR . 'api-controls'. $this->suffix .'.js', array('jquery'), false, true);
+      wp_register_script('dahz-api-controls', DF_CORE_JS_DIR . 'api-controls'. $this->suffix .'.js', array( 'jquery' ), false, true);
   }
 
 

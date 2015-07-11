@@ -1,17 +1,17 @@
-<?php 
+<?php
 /**
- * Build Controls Customizer           
+ * Build Controls Customizer
  * @since 1.2.1
  */
 class Dahz_Customize_Controls extends Dahz_Customizer_Builder {
 
 	/**
 	 * array of control
-	 * @param $control 
+	 * @param $control
 	 * @since 1.3.1
-	 */		
-	public static function array_of_control($control) {
-        
+	 */
+	public static function array_of_control( $control ) {
+
 		if (  ! isset( $control['default'] ) ) {
 			$control['default'] = '';
 		}
@@ -37,23 +37,23 @@ class Dahz_Customize_Controls extends Dahz_Customizer_Builder {
 	}
 
     /**
-     * 
-     * @param string $wp_customize 
+     *
+     * @param string $wp_customize
      * @param string $control
-     * @since 1.3.0 
+     * @since 1.3.0
      */
 	public function add( $wp_customize, $control ) {
-			
+
 		$control = self::array_of_control( $control );
-         
+
          /**
          * use the default WordPress Core Customizer fields when possible
 		 * and only add our own custom controls when needed.
 		 */
-		
+
 		// control
 			if ( 'description' == $control['type'] ) {
-				
+
 				$wp_customize->add_control( new DAHZ_TextDescription_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'sub-title' == $control['type'] ) {
@@ -69,7 +69,7 @@ class Dahz_Customize_Controls extends Dahz_Customizer_Builder {
 				$wp_customize->add_control( new DAHZ_Layout_Picker_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'slider' == $control['type'] ) {
-				
+
 				$wp_customize->add_control( new DAHZ_RangeSlider_Control( $wp_customize, $control['id'], $control ));
 
 			} elseif ( 'uploader' == $control['type'] ) {
@@ -86,7 +86,7 @@ class Dahz_Customize_Controls extends Dahz_Customizer_Builder {
 
 			} elseif ( 'select' == $control['type'] || ( 'select' == $control['type'] && isset( $control['mode'] ) && 'search' == $control['mode'] ) ) {
 
-				$wp_customize->add_control( new DAHZ_Selectbox_Dropdown_Control($wp_customize, $control['id'], $control )); 
+				$wp_customize->add_control( new DAHZ_Selectbox_Dropdown_Control($wp_customize, $control['id'], $control ));
 
 			} elseif ( 'checkbox' == $control['type'] || ( 'checkbox' == $control['type'] && isset( $control['mode'] ) && 'toggle' == $control['mode'] ) ) {
 
@@ -111,5 +111,5 @@ class Dahz_Customize_Controls extends Dahz_Customizer_Builder {
 			}
 
 	}
-	
+
 }

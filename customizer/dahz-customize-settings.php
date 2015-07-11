@@ -1,29 +1,29 @@
 <?php
 /**
- * Build Settings Customizer           
+ * Build Settings Customizer
  * @since 1.2.1
  */
 class Dahz_Customize_Settings extends Dahz_Customizer_Builder {
-    
+
     /**
-     * 
-     * @param string $wp_customize 
+     *
+     * @param string $wp_customize
      * @param string $control
-     * @since 1.4.0 
+     * @since 1.4.0
      */
-	public function add($wp_customize, $control){
+	public function add( $wp_customize, $control ){
 		$this->add_setting( $wp_customize, $control );
 	}
 
 	/**
-	 * 
-	 * @param string $wp_customize  
-	 * @param string $control     
-	 * @param bool|string $id_override 
-	 * @param mixed $callback    
-	 * @since 1.2.1 
+	 *
+	 * @param string $wp_customize
+	 * @param string $control
+	 * @param bool|string $id_override
+	 * @param mixed $callback
+	 * @since 1.2.1
 	 */
-	public function add_setting($wp_customize, $control, $id_override = null, $default_override = null, $callback = null) {
+	public function add_setting( $wp_customize, $control, $id_override = null, $default_override = null, $callback = null ) {
 
 		// setting
 		$id     = ( ! is_null( $id_override ) ) ? $id_override : 'df_options[' .$control['setting']. ']';
@@ -31,7 +31,7 @@ class Dahz_Customize_Settings extends Dahz_Customizer_Builder {
 		$callback = ( ! is_null( $callback ) )  ? $callback : $this->sanitize_callback( $control );
 
 
-		$wp_customize->add_setting($id, array(
+		$wp_customize->add_setting( $id, array(
 				'default'    => $default,
 				'type'       => 'option',
 				'capability' => 'edit_theme_options',
@@ -41,7 +41,7 @@ class Dahz_Customize_Settings extends Dahz_Customizer_Builder {
 
 	}
 
-	public function sanitize_callback($control) {
+	public function sanitize_callback( $control ) {
 
 		if ( isset( $control['sanitize_callback'] ) && ! empty( $control['sanitize_callback'] ) ) {
 			return $control['sanitize_callback'];
@@ -58,7 +58,7 @@ class Dahz_Customize_Settings extends Dahz_Customizer_Builder {
 	 * @return string the function name of a sanitization callback
 	 * @since  1.4.0
 	 */
-	public static function get_sanitization($control_type) {
+	public static function get_sanitization( $control_type ) {
 
 		switch ( $control_type ) {
 			case 'checkbox' :
@@ -95,5 +95,5 @@ class Dahz_Customize_Settings extends Dahz_Customizer_Builder {
 		return $sanitize_callback;
 
 	}
-	
+
 }

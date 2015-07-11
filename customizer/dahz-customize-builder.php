@@ -21,17 +21,11 @@ class Dahz_Customizer_Builder {
 
 		self::$instance =& $this;
 
-		add_action('after_setup_theme', array( $this, 'set_customizer' ) );
-	}
-
-	public function set_customizer(){
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-controls.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-settings.php';
 		add_action('customize_register', array( $this, 'regControlType' ), 99);
 		add_action('customize_register', array( $this, 'isBuildCustomizer' ), 99 );
 	}
 
-	public function isBuildCustomizer($wp_customize) {
+	public function isBuildCustomizer( $wp_customize ) {
 		$controls = $this->getAllControl();
 		$this->settings = new Dahz_Customize_Settings();
 		$this->controls = new Dahz_Customize_Controls();
@@ -49,12 +43,12 @@ class Dahz_Customizer_Builder {
 
 	public function getAllControl() {
 
-		$controls = apply_filters('df_customizer_controls', array());
+		$controls = apply_filters( 'df_customizer_controls', array() );
 		return $controls;
 
 	}
 
-	function regControlType($wp_customize) {
+	function regControlType( $wp_customize ) {
 
 		$customizer_control = array(
 							'media/media-uploader-custom-control.php',

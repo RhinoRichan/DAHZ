@@ -12,7 +12,6 @@
 add_action( 'wp_head', 'dahz_meta_charset', 0 );
 add_action( 'wp_head', 'dahz_meta_viewport', 1 );
 add_action( 'wp_head', 'dahz_link_pingback',  2 );
-add_action( 'wp_head', 'dahz_render_title' );
 add_action( 'init', 'get_theme_framework_version_init', 10 );
 add_action( 'wp_head', 'dahz_framework_version', 10 );
 
@@ -69,6 +68,7 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) {
    <title><?php wp_title('|', true, 'right'); ?></title>
   <?php
   }
+	add_action( 'wp_head', 'dahz_render_title' );
 }
 endif;
 
@@ -146,12 +146,12 @@ function get_theme_framework_version_data() {
         $response['theme_name'] = $theme_data->Name;
       }
     } else {
-      $theme_data = wp_get_theme(trailingslashit( CHILD_THEME_DIR ).'style.css');
+      $theme_data = wp_get_theme(trailingslashit( get_stylesheet_directory() ).'style.css');
       $response['theme_version'] = $theme_data['Version'];
       $response['theme_name'] = $theme_data['Name'];
 
       if ( true == $response['is_child'] ) {
-        $theme_data = wp_get_theme(trailingslashit( CHILD_THEME_DIR ).'style.css');
+        $theme_data = wp_get_theme(trailingslashit( get_stylesheet_directory() ).'style.css');
         $response['child_theme_version'] = $theme_data['Version'];
         $response['child_theme_name'] = $theme_data['Name'];
       }

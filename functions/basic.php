@@ -95,20 +95,20 @@ add_action( 'wp_enqueue_scripts', 'dahz_comment_reply', 5 );
 
 
 /**
- * Convert Hex to RGBA 
- * @since  1.0.0 
+ * Convert Hex to RGBA
+ * @since  1.0.0
  */
-if (!function_exists('df_convert_rgba')) {
+if ( ! function_exists( 'df_convert_rgba' ) ) {
 
-    function df_convert_rgba($color, $opacity) {
-        $color = str_replace("#", "", $color);
+    function df_convert_rgba( $color, $opacity ) {
+        $color = str_replace( "#", "", $color );
 
-        $r = hexdec(substr($color, 0, 2));
-        $g = hexdec(substr($color, 2, 2));
-        $b = hexdec(substr($color, 4, 2));
-        $a = intval($opacity) / 100;
+        $r = hexdec( substr( $color, 0, 2 ) );
+        $g = hexdec( substr( $color, 2, 2 ) );
+        $b = hexdec( substr( $color, 4, 2 ) );
+        $a = intval( $opacity ) / 100;
 
-        return "rgba($r, $g, $b, $a)";
+        return "rgba( $r, $g, $b, $a )";
     }
 
 }
@@ -116,8 +116,8 @@ if (!function_exists('df_convert_rgba')) {
 
 /**
  * Word Trim function
- * @param type $count 
- * @param type $ellipsis 
+ * @param type $count
+ * @param type $ellipsis
  * @return string
  * @since  1.0.0
  */
@@ -127,7 +127,7 @@ function df_word_trim($string, $count, $ellipsis = FALSE){
           if (count($words) > $count){
                 array_splice($words, $count);
                 $string = implode(' ', $words);
-                
+
                 if (is_string($ellipsis)){
                         $string .= $ellipsis;
                 }
