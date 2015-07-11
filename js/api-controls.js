@@ -1,4 +1,4 @@
-( function( api ) {
+( function( $, api ) {
 
 	// Layout Picker
 	api.controlConstructor['images_radio'] = api.Control.extend( {
@@ -13,4 +13,4 @@
 		}
 	} );
 
-})(wp.customize);
+})( jQuery, wp.customize );
