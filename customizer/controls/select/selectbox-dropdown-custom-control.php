@@ -25,14 +25,16 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
      */
     public function render_content() {
 
-          if ( empty( $this->choices ) )
+        if ( empty( $this->choices ) ){
           return;
+        }
 
 
         $ids  = $this->id;
         $name = '_customize-select-' . $ids;
         $dir = $this->direction;
-
+        $class = ( 'search' == $this->mode ) ? 'selectbox-search ui search selection dropdown' : 'selectbox';
+        $dropdown_classes = implode( " ", array( $class, $dir ) );
         ?>
 
         <label>
@@ -48,24 +50,13 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
           <?php endif; ?>
         </label>
 
+      <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="<?php echo $dropdown_classes; ?>">
+      <?php foreach ( $this->choices as $value => $label ): ?>
+          <option value="<?php echo esc_attr( $value ) ?>" <?php selected( $this->value(), $value, false ); ?>><?php echo $label; ?></option>
+      <?php endforeach; ?>
+      </select>
 
-        <?php if( 'search' == $this->mode ): ?>
-
-        <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="selectbox-search ui search selection dropdown <?php echo $dir; ?>" id="search-select_<?php echo $ids; ?>">
-         <?php foreach ( $this->choices as $value => $label ): ?>
-            <option value="<?php echo esc_attr( $value ) ?>" <?php selected( $this->value(), $value, false ); ?>><?php echo $label; ?></option>
-        <?php endforeach; ?>
-        </select>
-
-        <?php else: ?>
-
-        <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="selectbox selectric <?php echo $dir; ?>" id="select_<?php echo $ids; ?>">
-        <?php foreach ( $this->choices as $value => $label ): ?>
-            <option value="<?php echo esc_attr( $value ) ?>" <?php selected( $this->value(), $value, false ); ?>><?php echo $label; ?></option>
-        <?php endforeach; ?>
-        </select>
-
-        <?php endif; 
+        <?php
 
     }
   }
