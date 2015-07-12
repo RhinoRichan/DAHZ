@@ -27,8 +27,10 @@ class Dahz_Customizer_Scripts {
       //HOOK
       do_action('dahz_enqueue_customizer_admin');
 
-      wp_enqueue_script('dahz-semantic-ui', DF_CORE_JS_DIR . 'semantic.js', array( 'jquery' ), false, true );
-      wp_enqueue_script('dahz-customizer-main', DF_CORE_JS_DIR . 'customizer-main'. $this->suffix .'.js', array( 'customize-controls', 'dahz-semantic-ui' ), false, true );
+      wp_enqueue_script('dahz-semantic-ui-transition', DF_CORE_JS_DIR . 'transition.min.js', array( 'jquery' ), false, true );
+      wp_enqueue_script('dahz-semantic-ui-dropdown', DF_CORE_JS_DIR . 'dropdown.min.js', array( 'jquery' ), false, true );
+      wp_enqueue_script('dahz-semantic-ui-popup', DF_CORE_JS_DIR . 'popup.min.js', array( 'jquery' ), false, true );
+      wp_enqueue_script('dahz-customizer-main', DF_CORE_JS_DIR . 'customizer-main'. $this->suffix .'.js', array( 'customize-controls' ), false, true );
   }
 
   function customize_controls_register_script(){
