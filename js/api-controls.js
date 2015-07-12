@@ -13,4 +13,17 @@
 		}
 	} );
 
+  // Selectbox
+	api.controlConstructor['select'] = api.Control.extend( {
+    ready: function() {
+        var control = this;
+
+        control.container.on( 'change', 'select',
+            function() {
+                control.setting.set( jQuery( this ).val() );
+            }
+        );
+    }
+} );
+
 })( jQuery, wp.customize );

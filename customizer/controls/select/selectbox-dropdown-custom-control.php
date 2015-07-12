@@ -16,47 +16,59 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
 
     public function enqueue() {
     $suffix = dahz_get_min_suffix();
+     wp_enqueue_script( 'dahz-api-controls' );
      wp_enqueue_style( 'customize-semantic-dropdown', DF_CORE_CSS_DIR . 'dropdown'.$suffix.'.css', null, null);
     }
 
-    /**
-     * Render the content on the theme customizer page
-     * TODO: Use content_template func
-     */
-    public function render_content() {
+    public function to_json()
+    {
+      parent::to_json();
 
-        if ( empty( $this->choices ) ){
-          return;
-        }
+      // The setting value.
+      $this->json['value'] = $this->value();
+      // The control choices.
+      $this->json['choices'] = $this->choices;
+      // The data link.
+      $this->json['link'] = $this->get_link();
+      // The direction box
+      $this->json['dir'] = $this->direction;
 
+      $this->json['mode'] = ( 'search' == $this->mode ) ? 'selectbox-search ui search selection dropdown' : 'selectbox';
 
-        $ids  = $this->id;
-        $name = '_customize-select-' . $ids;
-        $dir = $this->direction;
-        $class = ( 'search' == $this->mode ) ? 'selectbox-search ui search selection dropdown' : 'selectbox';
-        $dropdown_classes = implode( " ", array( $class, $dir ) );
-        ?>
-
-        <label>
-        <?php if ( ! empty( $this->label ) ) : ?>
-            <span class="customize-control-title">
-            <?php echo esc_html( $this->label ); ?>
-
-            <?php if ( ! empty( $this->description ) ) : ?>
-            <i data-content="<?php echo $this->description; ?>" data-position="bottom right" class="icon tooltip"></i>
-            <?php endif; ?>
-
-            </span>
-          <?php endif; ?>
-        </label>
-
-      <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="<?php echo $dropdown_classes; ?>">
-      <?php foreach ( $this->choices as $value => $label ): ?>
-          <option value="<?php echo esc_attr( $value ) ?>" <?php selected( $this->value(), $value, false ); ?>><?php echo $label; ?></option>
-      <?php endforeach; ?>
-      </select>
-
-        <?php
+      $this->json['ddClass'] = implode( " ", array( $this->json['mode'], $this->json['dir'] ) );
 
     }
+
+    public function content_template()
+    { ?>
+
+    <# if ( ! data.choices ) {
+    return;
+    } #>
+
+    <label>
+      <# if ( data.label ) { #>
+    <span class="customize-control-title">
+    {{ data.label }}
+
+    <# if ( data.description )  { #>
+    <i data-content="{{{ data.description }}}" data-position="bottom right" class="icon tooltip"></i>
+    <# } #>
+
+    </span>
+    <# } #>
+   </label>
+
+   <select class="{{{ data.ddClass }}}" {{{ data.link }}}>
+
+    <# for ( key in data.choices ) { #>
+
+        <option value="{{ key }}" <# if ( key === data.value ) { #> selected="selected" <# } #>>{{ data.choices[ key ] }}</option>
+
+    <# } #>
+
+  </select>
+
+  <?php  }
+
   }
