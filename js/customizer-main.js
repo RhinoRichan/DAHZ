@@ -8,6 +8,12 @@ customControls = {
 		  this.$buttonset  = $('.df-radio-control-buttonset, .df-radio-control-image');
 		  this.$range      = $('.input_df_slider_text');
 			this.$tooltip 	 = 	$( '.tooltip' );
+			this.$selectbox   = $('.selectbox, .selectbox-search');
+
+			// Initialize Button sets
+			if (this.$selectbox.length > 0) {
+				this.select_dropdown();
+			}
 
 			// Initialize Button sets
 			if (this.$buttonset.length > 0) {
@@ -24,6 +30,11 @@ customControls = {
 				this.range();
 			}
 
+	},
+
+	// Select dropdown
+	select_dropdown: function() {
+		this.$selectbox.dropdown();
 	},
 
 	// Radio Buttonset

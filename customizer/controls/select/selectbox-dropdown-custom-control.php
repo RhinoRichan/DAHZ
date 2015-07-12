@@ -51,7 +51,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
 
         <?php if( 'search' == $this->mode ): ?>
 
-        <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="ui search selection dropdown <?php echo $dir; ?>" id="search-select_<?php echo $ids; ?>">
+        <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="selectbox-search ui search selection dropdown <?php echo $dir; ?>" id="search-select_<?php echo $ids; ?>">
          <?php foreach ( $this->choices as $value => $label ): ?>
             <option value="<?php echo esc_attr( $value ) ?>" <?php selected( $this->value(), $value, false ); ?>><?php echo $label; ?></option>
         <?php endforeach; ?>
@@ -59,29 +59,13 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
 
         <?php else: ?>
 
-        <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="selectric <?php echo $dir; ?>" id="select_<?php echo $ids; ?>">
+        <select <?php $this->link(); ?> name="<?php echo esc_attr( $name ); ?>" class="selectbox selectric <?php echo $dir; ?>" id="select_<?php echo $ids; ?>">
         <?php foreach ( $this->choices as $value => $label ): ?>
             <option value="<?php echo esc_attr( $value ) ?>" <?php selected( $this->value(), $value, false ); ?>><?php echo $label; ?></option>
         <?php endforeach; ?>
         </select>
 
-        <?php endif; ?>
+        <?php endif; 
 
-
-        <?php if('search' == $this->mode): ?>
-          <script>
-         (function($) {
-          $('#search-select_<?php echo $ids; ?>').dropdown();
-          })(jQuery);
-          </script>
-        <?php else: ?>
-          <script>
-          (function($) {
-          $('#select_<?php echo $ids; ?>').dropdown();
-          })(jQuery);
-          </script>
-        <?php endif; ?>
-
-      <?php
     }
   }
