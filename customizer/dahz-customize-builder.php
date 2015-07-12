@@ -50,28 +50,21 @@ class Dahz_Customizer_Builder {
 
 	function regControlType( $wp_customize ) {
 
-		$customizer_control = array(
-							'media/media-uploader-custom-control.php',
-							'typography/googlefont-custom-control.php',
-							'text/text-description-custom-control.php',
-							'text/text-subtitle-custom-control.php',
-							'text/text-slider-custom-control.php',
-							'layout/layout-picker-custom-control.php',
-							'select/selectbox-dropdown-custom-control.php',
-							'text/textarea-custom-control.php',
-							'text/checkbox-custom-control.php',
-							'text/radiobox-custom-control.php'
-		);
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/media/media-uploader-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/typography/googlefont-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-description-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-subtitle-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-slider-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/layout/layout-picker-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/select/selectbox-dropdown-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/textarea-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/checkbox-custom-control.php';
+		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/radiobox-custom-control.php';
 
-		foreach ( $customizer_control as $control ) {
-			$file = DF_CUSTOMIZER_CONTROL_DIR . 'controls/' . $control;
-			if ( file_exists( $file ) ) {
-				require_once( $file );
-			}
-		}
 		$wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
 		$wp_customize->register_control_type( 'DAHZ_TextDescription_Control' );
 		$wp_customize->register_control_type( 'DAHZ_Layout_Picker_Control' );
+		$wp_customize->register_control_type( 'DAHZ_Selectbox_Dropdown_Control' );
 	}
 
 }
