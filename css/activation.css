@@ -107,9 +107,39 @@ right: 0;
 .title{
 	margin: 0;
 	padding:10px;
-	border-bottom: 1px solid #e5e5e5;	
+	border-bottom: 1px solid #e5e5e5;
 }
-
 .tgmpa h2{
 	display: none;
+}
+.more-item a{
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.more-item a img{
+  -webkit-transition: opacity .4s;
+  transition: opacity .4s;
+}
+.more-item a img:hover{
+  opacity: .6;
+}
+.dahz-wrap hr{
+  margin: 40px 0px;
+}
+.dahz-wrap li{
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+}
+.dahz-wrap li a{
+  text-decoration: none;
+}
+
+@media only screen and (max-width:480px) {
+.home-wrap .theme-badge {
+    width: 100%;
+    display: block;
+    position: relative;
+  }
 }
