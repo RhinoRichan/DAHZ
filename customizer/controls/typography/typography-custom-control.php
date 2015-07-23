@@ -1,5 +1,5 @@
 <?php
-//require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/typography/googlefont-custom-control.php',
+require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/typography/googlefont-array.php';
 
 /**
  * Typography control class.
@@ -19,7 +19,7 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 	public $type = 'typography';
 
 	/**
-	 * Array 
+	 * Array
 	 *
 	 * @since  1.0.0
 	 * @access public
@@ -63,7 +63,9 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function enqueue() {
+		$suffix = dahz_get_min_suffix();
 		wp_enqueue_script( 'dahz-api-controls' );
+    wp_enqueue_style( 'customize-semantic-dropdown', DF_CORE_CSS_DIR . 'dropdown'.$suffix.'.css', null, null);	
 	}
 
 	/**
@@ -86,10 +88,10 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 			);
 
 			if ( 'family' === $setting_key )
-				$this->json[ $setting_key ]['choices'] = googlefont_families();//$this->get_font_families();
+				$this->json[ $setting_key ]['choices'] = googlefont_families();
 
 			elseif ( 'weight' === $setting_key )
-				$this->json[ $setting_key ]['choices'] = googlefont_family_all_weights();//$this->get_font_weight_choices();
+				$this->json[ $setting_key ]['choices'] = googlefont_family_all_weights();
 
 			elseif ( 'style' === $setting_key )
 				$this->json[ $setting_key ]['choices'] = $this->get_font_style_choices();
@@ -104,7 +106,7 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function content_template() { ?>
-		
+
 		<span class="customize-control-title">
 		<# if ( data.label ) { #>
 			{{ data.label }}
@@ -119,13 +121,13 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 
 		<# if ( data.family && data.family.choices ) { #>
 
-			<li class="typography-font-family">
+			<li class="customize-control typography-font-family">
 
 				<# if ( data.family.label ) { #>
 					<span class="customize-control-title">{{ data.family.label }}</span>
 				<# } #>
 
-				<select {{{ data.family.link }}}>
+				<select class="selectbox-search ui search selection dropdown" {{{ data.family.link }}}>
 
 					<# _.each( data.family.choices, function( label, choice ) { #>
 						<option value="{{ choice }}" <# if ( choice === data.family.value ) { #> selected="selected" <# } #>>{{ label }}</option>
@@ -137,7 +139,7 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 
 		<# if ( data.weight && data.weight.choices ) { #>
 
-			<li class="typography-font-weight">
+			<li class="customize-control typography-font-weight">
 
 				<# if ( data.weight.label ) { #>
 					<span class="customize-control-title">{{ data.weight.label }}</span>
