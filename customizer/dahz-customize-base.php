@@ -36,7 +36,6 @@ class Dahz_Customizer_Base
   function __construct(){
     self::$instance =& $this;
 
-  //  add_action('after_setup_theme',  array( $this, 'loadAdmin' ) );
 
       global $pagenow;
       if ( is_admin() && isset( $_GET['activated'] ) && $pagenow == 'themes.php' ) {
@@ -52,7 +51,7 @@ class Dahz_Customizer_Base
       add_action('dahz_screen_menu',  array( $this, 'regAdminMenu' ) );
 
   }
-  
+
 
   function unsetAdminMenu(){
      global $submenu;
