@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Dahz Framework - A WordPress theme development framework.
  * @package   DahzFramework
- * @version   2.1.0
+ * @version   2.1.1
  * @author    Dahz
  * @copyright Copyright (c) 2015, Dahz
  */
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
      * @since 1.0.0
      */
         /* Sets the framework version number. */
-        define( 'DF_VERSION', '2.1.0' );
+        define( 'DF_VERSION', '2.1.1' );
 
         /* Sets the path to the parent theme directory. */
         define( 'THEME_DIR', get_template_directory() );
@@ -75,8 +75,6 @@ if ( ! defined( 'ABSPATH' ) ) {
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'helpers/sanitization.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-scripts.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-builder.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-controls.php';
-        require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-settings.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-base.php';
         require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-options.php';
         /* Backup Import / Export */
@@ -91,7 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         }
 
     }
-    add_action( 'after_setup_theme', 'dahz_after_setup_theme_init' );
+    add_action( 'after_setup_theme', 'dahz_after_setup_theme_init', -95 );
 
     if ( ! function_exists( 'dahz_redirect_after_activate' ) ) {
     /**

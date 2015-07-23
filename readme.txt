@@ -1,9 +1,14 @@
 ** DahzFramework Changelog **
 
+Version 2.1.1
+* added: typography customizer control type
+* Removed: File ( customizer/dahz-customizer-controls.php, customizer/dahz-customizer-settings.php )
+
 Version 2.1.0
 * added: after_setup_theme admin screen and customizer control
 * changed: for template.php use folder templates
 * Fixed: rendering customizer control dropdown
+* Updated: semantic-ui transition javascript & css
 
 Version 2.0.0
 * added: use call_user_func() for callback theme content admin home screen.
