@@ -19,7 +19,7 @@
  */
 function dahz_get_template( $composer, $base, $extension = '' ) {
 
-        get_template_part( 'templates/' . $composer . '/' . $base, $extension );
+        get_template_part( 'includes/templates/' . $composer . '/' . $base, $extension );
 }
 
 /**
@@ -50,7 +50,7 @@ function dahz_get_content_template() {
 		list( $type, $subtype ) = false !== strpos( $mime_type, '/' ) ? explode( '/', $mime_type ) : array( $mime_type, '' );
 
 		$templates[] = "content-attachment-{$type}.php";
-		$templates[] = "templates/content/attachment-{$type}.php";
+		$templates[] = "includes/templates/content/attachment-{$type}.php";
 	}
 
 	/* If the post type supports 'post-formats', get the template based on the format. */
@@ -61,20 +61,20 @@ function dahz_get_content_template() {
 
 		/* Template based off post type and post format. */
 		$templates[] = "content-{$post_type}-{$post_format}.php";
-		$templates[] = "templates/content/{$post_type}-{$post_format}.php";
+		$templates[] = "includes/templates/content/{$post_type}-{$post_format}.php";
 
 		/* Template based off the post format. */
 		$templates[] = "content-{$post_format}.php";
-		$templates[] = "templates/content/{$post_format}.php";
+		$templates[] = "includes/templates/content/{$post_format}.php";
 	}
 
 	/* Template based off the post type. */
 	$templates[] = "content-{$post_type}.php";
-	$templates[] = "templates/content/{$post_type}.php";
+	$templates[] = "includes/templates/content/{$post_type}.php";
 
 	/* Fallback 'content.php' template. */
 	$templates[] = 'content.php';
-	$templates[] = 'templates/content/content.php';
+	$templates[] = 'includes/templates/content/content.php';
 
   // Apply filters to the templates array.
 	$templates = apply_filters( 'dahz_content_template_hierarchy', $templates );
@@ -102,11 +102,11 @@ function dahz_get_menu( $name = '' ) {
 
 	if ( '' !== $name ) {
 		$templates[] = "menu-{$name}.php";
-		$templates[] = "templates/menu/{$name}.php";
+		$templates[] = "includes/templates/menu/{$name}.php";
 	}
 
 	$templates[] = 'menu.php';
-	$templates[] = 'templates/menu/menu.php';
+	$templates[] = 'includes/templates/menu/menu.php';
 
 	locate_template( $templates, true, false );
 }
@@ -140,11 +140,11 @@ function dahz_get_header( $name = '' ) {
 
 	if ( '' !== $name ) {
 		$templates[] = "header-{$name}.php";
-		$templates[] = "templates/header/{$name}.php";
+		$templates[] = "includes/templates/header/{$name}.php";
 	}
 
 	$templates[] = 'header.php';
-	$templates[] = 'templates/header/header.php';
+	$templates[] = 'includes/templates/header/header.php';
 
 	locate_template( $templates, true, false );
 }
@@ -178,11 +178,11 @@ function dahz_get_footer( $name = '') {
 
 	if ( '' !== $name ) {
 		$templates[] = "footer-{$name}.php";
-		$templates[] = "templates/footer/{$name}.php";
+		$templates[] = "includes/templates/footer/{$name}.php";
 	}
 
 	$templates[] = 'footer.php';
-	$templates[] = 'templates/footer/footer.php';
+	$templates[] = 'includes/templates/footer/footer.php';
 
 	locate_template( $templates, true, false );
 }
@@ -216,11 +216,11 @@ function dahz_get_sidebar( $name = '' ) {
 
 	if ( '' !== $name ) {
 		$templates[] = "sidebar-{$name}.php";
-		$templates[] = "templates/sidebar/{$name}.php";
+		$templates[] = "includes/templates/sidebar/{$name}.php";
 	}
 
 	$templates[] = 'sidebar.php';
-	$templates[] = 'templates/sidebar/sidebar.php';
+	$templates[] = 'includes/templates/sidebar/sidebar.php';
 
 	locate_template( $templates, true, false );
 }
