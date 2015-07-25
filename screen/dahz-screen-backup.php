@@ -56,4 +56,4 @@ class Dahz_screen_backup extends Dahz_screen_admin_base
 	}
 
 }
-new Dahz_screen_backup;
+new Dahz_screen_backup();

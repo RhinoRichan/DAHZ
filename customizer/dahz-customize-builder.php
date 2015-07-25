@@ -194,4 +194,4 @@ class Dahz_Customizer_Builder {
 	}
 
 }
-new Dahz_Customizer_Builder;
+$dahz_Customizer_Builder = new Dahz_Customizer_Builder();

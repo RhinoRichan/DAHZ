@@ -46,4 +46,4 @@ class Dahz_screen_addons extends Dahz_screen_admin_base
 	}
 
 }
-new Dahz_screen_addons;
+new Dahz_screen_addons();

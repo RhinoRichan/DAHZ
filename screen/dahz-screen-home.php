@@ -123,4 +123,4 @@ class Dahz_screen_home extends Dahz_screen_admin_base
 	}
 
 }
-new Dahz_screen_home;
+new Dahz_screen_home();

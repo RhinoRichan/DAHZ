@@ -39,4 +39,4 @@ class Dahz_Customizer_Scripts {
 
 
 }
-new Dahz_Customizer_Scripts;
+$dahz_customizer_scripts = new Dahz_Customizer_Scripts();
