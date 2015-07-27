@@ -1,32 +1,35 @@
-jQuery(function($) {
+( function($) {
 
 var api = wp.customize, customControls;
 
 customControls = {
 
+	cache: {},
+
 	init : function() {
-		  this.$buttonset  = $('.df-radio-control-buttonset, .df-radio-control-image');
-		  this.$range      = $('.input_df_slider_text');
-			this.$tooltip 	 = 	$( '.tooltip' );
-			this.$selectbox   = $('.selectbox, .selectbox-search');
+			// Populate cache
+		  this.cache.$buttonset  = $('.df-radio-control-buttonset, .df-radio-control-image');
+		  this.cache.$range      = $('.input_df_slider_text');
+			this.cache.$tooltip 	 = 	$( '.tooltip' );
+			this.cache.$selectbox   = $('.selectbox, .selectbox-search');
 
 			// Initialize Button sets
-			if (this.$selectbox.length > 0) {
+			if (this.cache.$selectbox.length > 0) {
 				this.select_dropdown();
 			}
 
 			// Initialize Button sets
-			if (this.$buttonset.length > 0) {
+			if (this.cache.$buttonset.length > 0) {
 				this.buttonset();
 			}
 
 			// Initialize tooltip
-			if (this.$tooltip.length > 0) {
+			if (this.cache.$tooltip.length > 0) {
 				this.tooltip();
 			}
 
 			// Initialize ranges
-			if (this.$range.length > 0) {
+			if (this.cache.$range.length > 0) {
 				this.range();
 			}
 
@@ -34,17 +37,17 @@ customControls = {
 
 	// Select dropdown
 	select_dropdown: function() {
-		this.$selectbox.dropdown();
+	this.cache.$selectbox.dropdown();
 	},
 
 	// Radio Buttonset
 	buttonset: function() {
-  	this.$buttonset.buttonset();
+  	this.cache.$buttonset.buttonset();
 	},
 
 	// Tooltip
 	tooltip: function() {
-		this.$tooltip.popup({
+		this.cache.$tooltip.popup({
 				className   : {
 								popup       : 'ui popup small'
 							}
@@ -54,7 +57,7 @@ customControls = {
 	// Slider Range
 	range: function(){
 
-		this.$range.each(function() {
+		this.cache.$range.each(function() {
 				var $input = $(this),
 					$slider = $input.parent().find('.slider_df_slider_text'),
 					value = parseFloat( $input.val() ),
@@ -86,4 +89,4 @@ jQuery(document).ready(function() {
 	customControls.init();
 });
 
-});
+})( jQuery );
