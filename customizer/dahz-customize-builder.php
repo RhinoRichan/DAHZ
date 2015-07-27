@@ -41,6 +41,8 @@ class Dahz_Customizer_Builder {
 			$transport      = ( isset( $control['transport'] ) ) ? esc_attr( $control['transport'] ) : 'refresh';
 			$input_attrs  	= ( isset( $control['input_attrs'] ) ) ? $control['input_attrs'] : array();
 			$choices  			= ( isset( $control['choices'] ) ) ? $control['choices'] : array();
+			$mode  					= ( isset( $control['mode'] ) ) ? $control['mode'] : '';
+			$dir      			= ( isset( $control['direction'] ) ) ? $control['direction'] : '';
 			$setting				= 'df_options['. $control['setting'] .']';
 			$id							= sanitize_key( str_replace( '[', '-', str_replace( ']', '', $setting ) ) );
 			$sanitize_cb    = self::get_sanitization( $control['type'] );
@@ -63,56 +65,7 @@ class Dahz_Customizer_Builder {
 							) );
 			} else {
 
-				switch ( $control['type'] ) {
-					case 'description':
-						$control_object = 'DAHZ_TextDescription_Control';
-						break;
-
-					case 'sub-title':
-						$control_object = 'DAHZ_Subtitle_Control';
-						break;
-
-					case 'textarea':
-						$control_object = 'DAHZ_Textarea_Control';
-						break;
-
-					case 'images_radio':
-						$control_object = 'DAHZ_Layout_Picker_Control';
-						break;
-
-					case 'slider':
-						$control_object = 'DAHZ_RangeSlider_Control';
-						break;
-
-					case 'uploader':
-						$control_object = 'DAHZ_Media_Uploader_Control';
-						break;
-
-					case 'image':
-						$control_object = 'WP_Customize_Image_Control';
-						break;
-
-					case 'color':
-						$control_object =	'WP_Customize_Color_Control';
-						break;
-
-					case 'select':
-						$mode  		= ( isset( $control['mode'] ) ) ? $control['mode'] : '';
-						$dir      = ( isset( $control['direction'] ) ) ? $control['direction'] : '';
-						$control_object =	'DAHZ_Selectbox_Dropdown_Control';
-						break;
-
-					case 'checkbox':
-						$mode  		= ( isset( $control['mode'] ) ) ? $control['mode'] : '';
-						$control_object =	'DAHZ_Checkbox_Control';
-						break;
-
-					case 'radio':
-						$mode  		= ( isset( $control['mode'] ) ) ? $control['mode'] : '';
-						$control_object =	'DAHZ_Radiobox_Control';
-						break;
-				}
-
+						$control_object = $this->get_object_controls( $control['type'] );
 						$wp_customize->add_control( new $control_object ( $wp_customize, $id, array(
 							'priority'          => $priority,
 							'mode'              => $mode,
@@ -153,6 +106,56 @@ class Dahz_Customizer_Builder {
 		$wp_customize->register_control_type( 'DAHZ_Layout_Picker_Control' );
 		$wp_customize->register_control_type( 'DAHZ_Selectbox_Dropdown_Control' );
 		$wp_customize->register_control_type( 'DAHZ_Typography_Control' );
+	}
+
+	public function get_object_controls( $control_type ){
+		switch ( $control_type ) {
+			case 'description':
+				$control_object = 'DAHZ_TextDescription_Control';
+				break;
+
+			case 'sub-title':
+				$control_object = 'DAHZ_Subtitle_Control';
+				break;
+
+			case 'textarea':
+				$control_object = 'DAHZ_Textarea_Control';
+				break;
+
+			case 'images_radio':
+				$control_object = 'DAHZ_Layout_Picker_Control';
+				break;
+
+			case 'slider':
+				$control_object = 'DAHZ_RangeSlider_Control';
+				break;
+
+			case 'uploader':
+				$control_object = 'DAHZ_Media_Uploader_Control';
+				break;
+
+			case 'image':
+				$control_object = 'WP_Customize_Image_Control';
+				break;
+
+			case 'color':
+				$control_object =	'WP_Customize_Color_Control';
+				break;
+
+			case 'select':
+				$control_object =	'DAHZ_Selectbox_Dropdown_Control';
+				break;
+
+			case 'checkbox':
+				$control_object =	'DAHZ_Checkbox_Control';
+				break;
+
+			case 'radio':
+				$control_object =	'DAHZ_Radiobox_Control';
+				break;
+		}
+
+		return $control_object;
 	}
 
 	public static function get_sanitization( $control_type ) {
