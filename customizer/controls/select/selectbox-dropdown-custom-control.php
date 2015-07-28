@@ -12,7 +12,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
 
     public $type = 'select';
     public $mode = 'select';
-    public $direction = ''; // upward, down
+    public $direction = 'auto'; // upward, down
 
     public function enqueue() {
     $suffix = dahz_get_min_suffix();
