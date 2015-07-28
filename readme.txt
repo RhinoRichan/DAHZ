@@ -2,6 +2,7 @@
 
 Version 2.1.1
 * added: typography customizer control type
+* added: class Dahz_Sanitization_Helper
 * Removed: File ( customizer/dahz-customizer-controls.php, customizer/dahz-customizer-settings.php )
 
 Version 2.1.0

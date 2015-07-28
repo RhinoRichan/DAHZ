@@ -27,7 +27,7 @@ class Dahz_Customizer_Builder {
 
 	public function isBuildCustomizer( $wp_customize ) {
 		$controls = $this->getAllControl();
-
+		$callback_helper = new Dahz_Sanitization_Helper;
 		// Early exit if controls are not set or if they're empty
 		if ( ! isset( $controls ) || empty( $controls ) ) {
 			return;
@@ -45,7 +45,7 @@ class Dahz_Customizer_Builder {
 			$dir      			= ( isset( $control['direction'] ) ) ? $control['direction'] : '';
 			$setting				= 'df_options['. $control['setting'] .']';
 			$id							= sanitize_key( str_replace( '[', '-', str_replace( ']', '', $setting ) ) );
-			$sanitize_cb    = self::get_sanitization( $control['type'] );
+			$sanitize_cb    = $callback_helper::get_sanitization( $control['type'] );
 
 			$wp_customize->add_setting( $setting, array(
 					'default'    => $default,
@@ -69,6 +69,7 @@ class Dahz_Customizer_Builder {
 						$wp_customize->add_control( new $control_object ( $wp_customize, $id, array(
 							'priority'          => $priority,
 							'mode'              => $mode,
+							'direction'         => $dir,
 							'section'           => $section,
 							'label'             => $label,
 							'description'       => $description,
@@ -90,16 +91,22 @@ class Dahz_Customizer_Builder {
 
 	public function regControlType( $wp_customize ) {
 
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/media/media-uploader-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/typography/typography-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-description-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-subtitle-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/text-slider-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/layout/layout-picker-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/select/selectbox-dropdown-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/textarea-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/checkbox-custom-control.php';
-		require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/text/radiobox-custom-control.php';
+		$custom_control_files = array(
+		  'controls/media/media-uploader-custom-control.php',
+		  'controls/typography/typography-custom-control.php',
+		  'controls/text/text-description-custom-control.php',
+		  'controls/text/text-subtitle-custom-control.php',
+		  'controls/text/text-slider-custom-control.php',
+		  'controls/layout/layout-picker-custom-control.php',
+		  'controls/select/selectbox-dropdown-custom-control.php',
+		  'controls/text/textarea-custom-control.php',
+		  'controls/text/checkbox-custom-control.php',
+		  'controls/text/radiobox-custom-control.php'
+		);
+
+		foreach ( $custom_control_files as $files ) {
+				require( DF_CUSTOMIZER_CONTROL_DIR . $files );
+		}
 
 		$wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
 		$wp_customize->register_control_type( 'DAHZ_TextDescription_Control' );
@@ -156,44 +163,6 @@ class Dahz_Customizer_Builder {
 		}
 
 		return $control_object;
-	}
-
-	public static function get_sanitization( $control_type ) {
-
-		switch ( $control_type ) {
-			case 'checkbox' :
-				$sanitize_callback = 'dahz_sanitize_checkbox';
-				break;
-			case 'select' :
-				$sanitize_callback = 'sanitize_text_field';
-				break;
-			case 'radio' :
-				$sanitize_callback = 'sanitize_text_field';
-				break;
-			case 'color' :
-				$sanitize_callback = 'sanitize_hex_color';
-				break;
-			case 'image' :
-				$sanitize_callback = 'esc_url_raw';
-				break;
-			case 'text' :
-				$sanitize_callback = 'esc_attr';
-				break;
-			case 'textarea' :
-				$sanitize_callback = 'dahz_sanitize_textarea';
-				break;
-			case 'uploader' :
-				$sanitize_callback = 'esc_url_raw';
-				break;
-			case 'slider' :
-				$sanitize_callback = 'dahz_sanitize_range';
-				break;
-			default:
-				$sanitize_callback = 'dahz_sanitize_default';
-		}
-
-		return $sanitize_callback;
-
 	}
 
 }
