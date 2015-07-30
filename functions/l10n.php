@@ -9,7 +9,7 @@ if ( ! function_exists( 'dahz_load_textdomain' ) ) {
  */
 function dahz_load_textdomain () {
   load_theme_textdomain( 'dahztheme' );
-  load_theme_textdomain( 'dahztheme', get_template_directory() . 'lang' );
+  load_theme_textdomain( 'dahztheme', get_template_directory() . '/lang' );
   if ( function_exists( 'load_child_theme_textdomain' ) )
     load_child_theme_textdomain( 'dahztheme' );
 } // End df_load_textdomain()
