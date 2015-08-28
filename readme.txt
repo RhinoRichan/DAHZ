@@ -4,6 +4,8 @@ Version 2.2.0
 * Changed: remove `df_options` for array customizer use `get_theme_mod` instead.
 * Changed: customizer type option to theme_mod.
 * Changed: backup import/export use Theme Customizer API .
+* Changed: use object class admin-init.php.
+* Removed: default option if theme activated.
 
 Version 2.1.1
 * added: typography customizer control type
