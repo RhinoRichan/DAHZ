@@ -1,8 +1,8 @@
 <?php
- 
-if ( ! defined( 'ABSPATH' ) ) { 
+
+if ( ! defined( 'ABSPATH' ) ) {
   exit;
-} 
+}
 /*-----------------------------------------------------------------------------------
 
 TABLE OF CONTENTS - CORE/ADMIN-CUSTOMIZER-BACKUP.PHP
@@ -38,9 +38,9 @@ ob_start();
               $options        = json_decode( $encode_options, true );
               foreach ( $options as $key => $value ) {
                  $value              = maybe_unserialize( $value );
-                 $need_options[$key] = $value;
+                 //$need_options[$key] = $value;
+                 set_theme_mod( $key, $value );
               }
-              update_option( 'df_options', $need_options );
 
               $import_notice = sprintf( '<div class="updated"><p>%s</p></div>', __('All options were restored successfully!', 'dahztheme') );
               echo $import_notice;
@@ -91,7 +91,7 @@ ob_start();
         $blogname  = strtolower( str_replace( ' ', '', get_option( 'blogname' ) ) );
         $date      = date( 'm-d-Y' );
         $json_name = $blogname . '-dahz-customizer-' . $date;
-        $options   = get_option('df_options');
+        $options   =  get_theme_mods();
 
         unset( $options['nav_menu_locations'] );
 
@@ -103,8 +103,8 @@ ob_start();
         $json_file = json_encode( $need_options );
 
         ob_clean();
-        
-        echo $json_file;  
+
+        echo $json_file;
 
         header( 'Content-Type: text/json; charset=' . get_option( 'blog_charset' ) );
         header( 'Content-Disposition: attachment; filename="' . $json_name . '.json"' );

@@ -40,7 +40,7 @@ class Dahz_Customizer_Base
       global $pagenow;
       if ( is_admin() && isset( $_GET['activated'] ) && $pagenow == 'themes.php' ) {
 
-       add_action('admin_head', array( $this, 'df_customizer_option_setup' ));
+      // add_action('admin_head', array( $this, 'df_customizer_option_setup' ));
         // Flush rewrite rules.
        add_action( 'admin_head', array( $this, 'isFlushRewriterules' ), 9 );
 
