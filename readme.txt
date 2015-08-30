@@ -1,6 +1,8 @@
 ** DahzFramework Changelog **
 
 Version 2.2.0
+* Added: autoloader callback.
+* Changed: customizer custom control filename.
 * Changed: remove `df_options` for array customizer use `get_theme_mod` instead.
 * Changed: customizer type option to theme_mod.
 * Changed: backup import/export use Theme Customizer API .
