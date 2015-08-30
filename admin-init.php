@@ -20,6 +20,8 @@ class Dahz {
     $this->functions();
     add_action( 'after_setup_theme', array( $this, 'customizer' ), 100 );
     add_action( 'after_setup_theme', array( $this, 'admin_screen' ), 100 );
+    add_action( 'dahz_theme_activate', array( $this, 'dahz_redirect_after_activate' ), 10 );
+    add_action( 'admin_enqueue_scripts', array( $this, 'dahz_menu_styles' ) );
   }
 
   /**
@@ -124,33 +126,27 @@ class Dahz {
     }
 
   }
+
+  /**
+   * Hooked onto "dahz_theme_activate" at priority 10.
+   * @since  2.0.0
+   * @return void
+   */
+  public function dahz_redirect_after_activate() {
+    header( 'Location: ' . admin_url( esc_url_raw( 'admin.php?page=dahzframework&activated=true' ) ) );
+  } // End dahz_redirect_after_activate()
+
+  /**
+   * Enqueue menu.css.
+   * Used to control the display of DahzFramework menu items across the dashboard
+   * @since  2.0.0
+   * @return void
+   */
+  function dahz_menu_styles() {
+    if( is_customize_preview() ) return;
+    $token = 'dahz';
+
+    wp_register_style( $token . '-menu', esc_url( DF_CORE_CSS_DIR . 'menu.css' ), array(), DF_VERSION );
+    wp_enqueue_style( $token . '-menu' );
+  }
 }
-
-
-    add_action( 'dahz_theme_activate', 'dahz_redirect_after_activate', 10 );
-    if ( ! function_exists( 'dahz_redirect_after_activate' ) ) {
-    /**
-     * Hooked onto "dahz_theme_activate" at priority 10.
-     * @since  2.0.0
-     * @return void
-     */
-    function dahz_redirect_after_activate() {
-      header( 'Location: ' . admin_url( esc_url_raw( 'admin.php?page=dahzframework&activated=true' ) ) );
-    } // End dahz_redirect_after_activate()
-    }
-
-
-    add_action( 'admin_enqueue_scripts', 'dahz_menu_styles' );
-    /**
-     * Enqueue menu.css.
-     * Used to control the display of DahzFramework menu items across the dashboard
-     * @since  2.0.0
-     * @return void
-     */
-    function dahz_menu_styles() {
-      if( is_customize_preview() ) return;
-    	$token = 'dahz';
-
-    	wp_register_style( $token . '-menu', esc_url( DF_CORE_CSS_DIR . 'menu.css' ), array(), DF_VERSION );
-    	wp_enqueue_style( $token . '-menu' );
-    }
