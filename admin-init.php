@@ -142,7 +142,7 @@ class Dahz {
    * @since  2.0.0
    * @return void
    */
-  function dahz_menu_styles() {
+  public function dahz_menu_styles() {
     if( is_customize_preview() ) return;
     $token = 'dahz';
 
