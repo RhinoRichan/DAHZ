@@ -137,22 +137,8 @@ class Dahz_Customizer_Builder {
 	 */
 	public function regControlType( $wp_customize ) {
 
-		$custom_control_files = array(
-		  'controls/media/media-uploader-custom-control.php',
-		  'controls/typography/typography-custom-control.php',
-		  'controls/text/text-description-custom-control.php',
-		  'controls/text/text-subtitle-custom-control.php',
-		  'controls/text/text-slider-custom-control.php',
-		  'controls/layout/layout-picker-custom-control.php',
-		  'controls/select/selectbox-dropdown-custom-control.php',
-		  'controls/text/textarea-custom-control.php',
-		  'controls/text/checkbox-custom-control.php',
-		  'controls/text/radiobox-custom-control.php'
-		);
-
-		foreach ( $custom_control_files as $files ) {
-				require( DF_CUSTOMIZER_CONTROL_DIR . $files );
-		}
+		// Run the autoloader
+	  spl_autoload_register( array( $this, 'autoload_classes' ) );
 
 		$register_type = array(
 			'Subtitle',
@@ -168,6 +154,22 @@ class Dahz_Customizer_Builder {
 
 	}
 
+	/**
+	 * Autoloader callback for loading custom Customizer control classes.
+   *
+	 * @access private
+	 * @param $class_name
+	 * @return string
+	 */
+	private function autoload_classes( $class_name ) {
+
+		$control_path = DF_CUSTOMIZER_CONTROL_DIR . 'controls/';
+		$filename = trailingslashit( $control_path ) . $class_name . '.php';
+		if ( is_readable( $filename ) ) {
+			require_once $filename;
+		}
+
+	}
 
 	/**
 	 * create object controls base on type for custom controls
