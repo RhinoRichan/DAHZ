@@ -162,11 +162,13 @@ class Dahz_Customizer_Builder {
 	 * @return string
 	 */
 	private function autoload_classes( $class_name ) {
-
-		$control_path = DF_CUSTOMIZER_CONTROL_DIR . 'controls/';
-		$filename = trailingslashit( $control_path ) . $class_name . '.php';
-		if ( is_readable( $filename ) ) {
-			require_once $filename;
+		
+		if ( 0 === stripos( $class_name, 'DAHZ' ) ) {
+					$control_path = DF_CUSTOMIZER_CONTROL_DIR . 'controls/';
+					$filename = trailingslashit( $control_path ) . $class_name . '.php';
+					if ( is_readable( $filename ) ) {
+						require_once $filename;
+					}
 		}
 
 	}
