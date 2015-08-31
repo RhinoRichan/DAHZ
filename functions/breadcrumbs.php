@@ -24,16 +24,14 @@ class dahzBreadcrumbs {
 	public $args = array();
 
 	private static $instance;
-
 	function __construct() {
 		self::$instance =& $this;
-		
 		$this->setup();
 
 		add_filter( 'dahz_breadcrumbs_trail', array($this, 'dahz_maybe_add_shop_page_link') );
 		add_filter( 'dahz_breadcrumbs_args', array($this, 'df_set_default_breadcrumb_taxonomies') );
 
-	} 
+	}
 
 	public function setup( $args = array() ) {
 		global $wp_query, $wp_rewrite;
@@ -50,7 +48,7 @@ class dahzBreadcrumbs {
 			'before' 						=> '<span class="breadcrumb-title">' . __( 'You are here:', 'dahztheme' ) . '</span>',
 			'after' 						=> false,
 			'front_page' 					=> true,
-			'home' 							=> __( 'Home ', 'dahztheme' ),
+			'show_home' 							=> __( 'Home ', 'dahztheme' ),
 			'echo' 							=> true,
 			'show_posts_page' 				=> true,
 			'show_only_first_taxonomy_tree' => false
@@ -68,8 +66,8 @@ class dahzBreadcrumbs {
 		extract( wp_parse_args( $args, $defaults ) );
 
 		/* If $show_home is set and we're not on the front page of the site, link to the home page. */
-		if ( !is_front_page() && $home )
-			$trail[] = '<a href="' . esc_url( home_url() ) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . esc_html( $home ) . '</a>';
+		if ( !is_front_page() && $show_home )
+			$trail[] = '<a href="' . esc_url( home_url() ) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" rel="home" class="trail-begin">' . esc_html( $show_home ) . '</a>';
 
 		/* If viewing the front page of the site. */
 		if ( is_front_page() ) {
@@ -167,7 +165,7 @@ class dahzBreadcrumbs {
 					foreach ( $sorted as $k => $v ) {
 						$count++;
 						if ( isset( $args['show_only_first_taxonomy_tree'] ) && true == (bool)$args['show_only_first_taxonomy_tree'] && 1 < $count ) continue; // Display only the first match.
-						$parents = dahz_get_term_parents( $v->term_id, $args["singular_{$post_type}_taxonomy"], true, ', ', $v->name, array() );
+						$parents = $this->dahz_get_term_parents( $v->term_id, $args["singular_{$post_type}_taxonomy"], true, ', ', $v->name, array() );
 						if ( $parents != '' && ! is_wp_error( $parents ) ) {
 							$parents_arr = explode( ', ', $parents );
 							foreach ( $parents_arr as $p ) {
@@ -187,7 +185,7 @@ class dahzBreadcrumbs {
 			/* End with the post title. */
 			$post_title = get_the_title( $post_id ); // Force the post_id to make sure we get the correct page title.
 			if ( !empty( $post_title ) )
-				$trail['trail_end'] = $post_title;	
+				$trail['trail_end'] = $post_title;
 		}
 
 		/* If we're viewing any type of archive. */
@@ -353,7 +351,7 @@ class dahzBreadcrumbs {
 			return $breadcrumb;
 	}
 
-	function dahz_breadcrumbs_get_term_parents( $parent_id = '', $taxonomy = '' ) {
+	public function dahz_breadcrumbs_get_term_parents( $parent_id = '', $taxonomy = '' ) {
 		/* Set up some default arrays. */
 		$trail = array();
 		$parents = array();
@@ -383,7 +381,7 @@ class dahzBreadcrumbs {
 		return $trail;
 	}
 
-	function dahz_get_term_parents( $id, $taxonomy, $link = false, $separator = '/', $nicename = false, $visited = array() ) {
+	public function dahz_get_term_parents( $id, $taxonomy, $link = false, $separator = '/', $nicename = false, $visited = array() ) {
 		$chain = '';
 		$parent = get_term( $id, $taxonomy );
 		if ( is_wp_error( $parent ) )
@@ -397,7 +395,7 @@ class dahzBreadcrumbs {
 
 		if ( $parent->parent && ( $parent->parent != $parent->term_id ) && !in_array( $parent->parent, $visited ) ) {
 			$visited[] = $parent->parent;
-			$chain .= dahz_get_term_parents( $parent->parent, $taxonomy, $link, $separator, $nicename, $visited );
+			$chain .= $this->dahz_get_term_parents( $parent->parent, $taxonomy, $link, $separator, $nicename, $visited );
 		}
 
 		if ( $link ) {
@@ -408,7 +406,7 @@ class dahzBreadcrumbs {
 		return $chain;
 	}
 
-	function dahz_breadcrumbs_get_parents( $post_id = '', $path = '' ) {
+	public function dahz_breadcrumbs_get_parents( $post_id = '', $path = '' ) {
 		/* Set up an empty trail array. */
 		$trail = array();
 
@@ -500,7 +498,7 @@ class dahzBreadcrumbs {
 		return $trail;
 	}
 
-	function dahz_maybe_add_shop_page_link ( $trail ) {
+	public function dahz_maybe_add_shop_page_link ( $trail ) {
 		if ( is_singular() && 'product' == get_post_type() && function_exists( 'wc_get_page_id' ) ) {
 			$permalinks   = get_option( 'woocommerce_permalinks' );
 			$shop_page_id = wc_get_page_id( 'shop' );
@@ -520,7 +518,7 @@ class dahzBreadcrumbs {
 		return $trail;
 	}
 
-	function df_set_default_breadcrumb_taxonomies ( $args ) {
+	public function df_set_default_breadcrumb_taxonomies ( $args ) {
 		$post_types = get_post_types( array( 'public' => true ) );
 		if ( 0 < count( $post_types ) ) {
 			foreach ( $post_types as $k => $v ) {
