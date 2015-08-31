@@ -20,3 +20,14 @@ function dahz_meta () {
 	_deprecated_function( __FUNCTION__, '2.2.0', 'wp_head()' );
 	return wp_head();
 } // use wp_head instead
+
+/**
+ * Global Option Customizer
+ * @deprecated 2.2.0
+ * @access public
+ * @return void
+ */
+function df_options( $name, $default = false ) {
+	_deprecated_function( __FUNCTION__, '2.2.0', 'get_theme_mod( $name, $default )' );
+	return get_theme_mod( $name, $default );
+}

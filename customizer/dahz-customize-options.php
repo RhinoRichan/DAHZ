@@ -121,20 +121,6 @@ class Dahz_Customizer_Options
 }
 
 
-if(!function_exists('df_options')) :
-/**
-* Global Option Customizer
-* Get theme’s settings from database with df_options('theme_settings').
-* @see Dahz_Customizer_Options::getOptionSetting()
-* @param array $name
-* @return mixed
-*/
-  function df_options( $name, $default = false ) {
-  	$options = new Dahz_Customizer_Options();
-    	return $options::getOptionSetting( $name, $default );
-  }
-endif;
-
 if( ! function_exists( 'df_is_customizing' ) ):
 /**
 * Returns a boolean on the customizer's state

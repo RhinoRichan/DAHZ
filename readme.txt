@@ -8,6 +8,7 @@ Version 2.2.0
 * Changed: backup import/export use Theme Customizer API .
 * Changed: use object class admin-init.php.
 * Removed: default option if theme activated.
+* Deprecated: function `df_options()` use get_theme_mod() 
 
 Version 2.1.1
 * added: typography customizer control type
