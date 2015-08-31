@@ -140,14 +140,7 @@ class Dahz_Customizer_Builder {
 		// Run the autoloader
 	  spl_autoload_register( array( $this, 'autoload_classes' ) );
 
-		$register_type = array(
-			'Subtitle',
-			'TextDescription',
-			'Layout_Picker',
-			'Selectbox_Dropdown',
-			'Typography'
-		);
-
+		$register_type = array( 'Subtitle', 'TextDescription', 'Layout_Picker', 'Selectbox_Dropdown', 'Typography' );
 		foreach ( $register_type as $type ) {
 				$wp_customize->register_control_type( 'DAHZ_'. $type .'_Control' );
 		}
@@ -162,7 +155,7 @@ class Dahz_Customizer_Builder {
 	 * @return string
 	 */
 	private function autoload_classes( $class_name ) {
-		
+
 		if ( 0 === stripos( $class_name, 'DAHZ' ) ) {
 					$control_path = DF_CUSTOMIZER_CONTROL_DIR . 'controls/';
 					$filename = trailingslashit( $control_path ) . $class_name . '.php';
