@@ -27,7 +27,6 @@ class Dahz_Customizer_Builder {
 
 	public function isBuildCustomizer( $wp_customize ) {
 		$controls = $this->getAllControl();
-		$callback_helper = new Dahz_Sanitization_Helper;
 		// Early exit if controls are not set or if they're empty
 		if ( ! isset( $controls ) || empty( $controls ) ) {
 			return;
@@ -45,7 +44,7 @@ class Dahz_Customizer_Builder {
 			$dir      			= ( isset( $control['direction'] ) ) ? $control['direction'] : '';
 			$setting				= 'df_options['. $control['setting'] .']';
 			$id							= sanitize_key( str_replace( '[', '-', str_replace( ']', '', $setting ) ) );
-			$sanitize_cb    = $callback_helper::get_sanitization( $control['type'] );
+			$sanitize_cb    = dahz_get_sanitization( $control['type'] );
 
 			$wp_customize->add_setting( $setting, array(
 					'default'    => $default,
