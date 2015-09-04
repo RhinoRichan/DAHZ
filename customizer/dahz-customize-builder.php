@@ -48,7 +48,6 @@ class Dahz_Customizer_Builder {
 
 		self::$instance =& $this;
 
-		add_action('customize_register', array( $this, 'regControlType' ), 99);
 		add_action('customize_register', array( $this, 'isBuildCustomizer' ), 99 );
 	}
 
@@ -59,8 +58,15 @@ class Dahz_Customizer_Builder {
 	 * @return void
 	 */
 	public function isBuildCustomizer( $wp_customize ) {
+		// Run the autoloader
+		spl_autoload_register( array( $this, 'autoload_classes' ) );
+
+		$register_type = array( 'Subtitle', 'TextDescription', 'Layout_Picker', 'Selectbox_Dropdown', 'Typography' );
+		foreach ( $register_type as $type ) {
+				$wp_customize->register_control_type( 'DAHZ_'. $type .'_Control' );
+		}
+
 		$controls = $this->getAllControl();
-		$callback_helper = new Dahz_Sanitization_Helper;
 		// Early exit if controls are not set or if they're empty
 		if ( ! isset( $controls ) || empty( $controls ) ) {
 			return;
@@ -78,7 +84,7 @@ class Dahz_Customizer_Builder {
 			$mode  					= ( isset( $control['mode'] ) ) ? $control['mode'] : '';
 			$dir      			= ( isset( $control['direction'] ) ) ? $control['direction'] : '';
 			$setting				= $control['setting'];
-			$sanitize_cb    = $callback_helper::get_sanitization( $control['type'] );
+			$sanitize_cb    = dahz_get_sanitization( $control['type'] );
 
 			$wp_customize->add_setting( $setting, array(
 					'default'    => $default,
@@ -126,24 +132,6 @@ class Dahz_Customizer_Builder {
 
 		$controls = apply_filters( 'df_customizer_controls', array() );
 		return $controls;
-
-	}
-
-
-	/**
-	 * Register all custom controls
-	 * @param $wp_customize
-	 * @return void
-	 */
-	public function regControlType( $wp_customize ) {
-
-		// Run the autoloader
-	  spl_autoload_register( array( $this, 'autoload_classes' ) );
-
-		$register_type = array( 'Subtitle', 'TextDescription', 'Layout_Picker', 'Selectbox_Dropdown', 'Typography' );
-		foreach ( $register_type as $type ) {
-				$wp_customize->register_control_type( 'DAHZ_'. $type .'_Control' );
-		}
 
 	}
 
@@ -224,4 +212,4 @@ class Dahz_Customizer_Builder {
 	}
 
 }
-$dahz_Customizer_Builder = new Dahz_Customizer_Builder();
+$dahz_Customizer_Builder = new Dahz_Customizer_Builder;

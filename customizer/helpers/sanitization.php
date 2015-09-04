@@ -64,10 +64,7 @@ function dahz_sanitize_default( $value ){
  * Sanitization Helper's
  * @since 2.1.1
  */
-class Dahz_Sanitization_Helper
-{
-
-		public static function get_sanitization( $control_type ) {
+function dahz_get_sanitization( $control_type ) {
 
 			switch ( $control_type ) {
 				case 'checkbox' :
@@ -102,7 +99,5 @@ class Dahz_Sanitization_Helper
 			}
 
 			return $sanitize_callback;
-
-		}
 
 }
