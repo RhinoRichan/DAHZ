@@ -8,7 +8,6 @@ if ( ! function_exists( 'dahz_load_textdomain' ) ) {
  * @return void
  */
 function dahz_load_textdomain () {
-  load_theme_textdomain( 'dahztheme' );
   load_theme_textdomain( 'dahztheme', get_template_directory() . '/lang' );
   if ( function_exists( 'load_child_theme_textdomain' ) )
     load_child_theme_textdomain( 'dahztheme' );
