@@ -131,7 +131,7 @@ if(!function_exists('df_options')) :
 */
   function df_options( $name, $default = false ) {
   	$options = new Dahz_Customizer_Options();
-    	return $options::getOptionSetting( $name, $default );
+    	return $options->getOptionSetting( $name, $default );
   }
 endif;
 
@@ -143,6 +143,6 @@ if( ! function_exists( 'df_is_customizing' ) ):
 */
   function df_is_customizing() {
   	$preview = new Dahz_Customizer_Options();
-  	return $preview::isCustomizerPreview();
+  	return $preview->isCustomizerPreview();
   }
 endif;
