@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Dahz Framework - A WordPress theme development framework.
  * @package   DahzFramework
- * @version   2.2.0
+ * @version   2.1.2
  * @author    Dahz
  * @copyright Copyright (c) 2015, Dahz
  */
@@ -35,7 +35,7 @@ class Dahz {
   public function constants() {
 
     /* Sets the framework version number. */
-    define( 'DF_VERSION', '2.2.0' );
+    define( 'DF_VERSION', '2.1.2' );
 
     /* Sets the path to the parent theme directory. */
     define( 'THEME_DIR', get_template_directory() );
