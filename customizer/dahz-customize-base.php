@@ -95,4 +95,3 @@ class Dahz_Customizer_Base
   } // End df_flush_rewriterules()
 
 }
-$dahz_customizer_base = new Dahz_Customizer_Base();

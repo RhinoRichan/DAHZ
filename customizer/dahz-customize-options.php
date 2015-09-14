@@ -53,19 +53,14 @@ class Dahz_Customizer_Options
    */
   public static function getOptionSetting( $name, $default = false ){
 
-      $saved = get_option( 'df_options' );
-
-      $default = apply_filters( 'df_options_set_default', array() );
-
-      $options = wp_parse_args( $saved, $default );
-
-      $mod = apply_filters( 'df_options_get_mod', $options, $name );
-
-      if (isset( $mod[ $name ] )) {
-          return $mod[ $name ];
-      } else {
-        return $default;
-      }
+    // get the meta from the database
+    $options = ( get_option( 'df_options' ) ) ? get_option( 'df_options' ) : null;
+    // return the option if it exists
+    if ( isset( $options[ $name ] ) ) {
+      return apply_filters( 'df_options_$name', $options[ $name ] );
+    }
+    // return default if nothing else
+    return apply_filters( 'df_options_$name', $default );
 
   }
 
@@ -121,7 +116,7 @@ class Dahz_Customizer_Options
 }
 
 
-if(!function_exists('df_options')) :
+if( ! function_exists( 'df_options' ) ) :
 /**
 * Global Option Customizer
 * Get theme’s settings from database with df_options('theme_settings').

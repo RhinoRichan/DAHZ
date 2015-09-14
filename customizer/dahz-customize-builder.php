@@ -21,7 +21,7 @@ class Dahz_Customizer_Builder {
 
 		self::$instance =& $this;
 
-		add_action('customize_register', array( $this, 'regControlType' ), 99);
+		add_action('customize_register', array( $this, 'regControlType' ), 1);
 		add_action('customize_register', array( $this, 'isBuildCustomizer' ), 99 );
 	}
 
@@ -54,28 +54,26 @@ class Dahz_Customizer_Builder {
 					'sanitize_callback' => $sanitize_cb,
 				) );
 
-			if( in_array( $control['type'], array( 'text', 'url', 'password', 'email' ) ) ) {
-						$wp_customize->add_control( $id, array(
-								'priority'          => $priority,
-								'section'           => $section,
-								'label'             => $label,
-								'description'       => $description,
-								'settings'          => $setting
-							) );
-			} else {
+				$option_control_parameters = array(
+					'type'              => $control['type'],
+					'priority'          => $priority,
+					'section'           => $section,
+					'label'             => $label,
+					'description'       => $description,
+					'settings'          => $setting
+				);
 
+				if( in_array( $control['type'], array( 'select', 'radio' ) ) ) {
+					$option_control_parameters['choices'] = $choices;
+				}
+
+			if( in_array( $control['type'], array( 'text', 'textarea', 'url', 'password', 'email' ) ) ) {
+						$wp_customize->add_control( $id, $option_control_parameters );
+			} else {
 						$control_object = $this->get_object_controls( $control['type'] );
-						$wp_customize->add_control( new $control_object ( $wp_customize, $id, array(
-							'priority'          => $priority,
-							'mode'              => $mode,
-							'direction'         => $dir,
-							'section'           => $section,
-							'label'             => $label,
-							'description'       => $description,
-							'choices'           => $choices,
-							'input_attrs'       => $input_attrs,
-							'settings'          => $setting
-						) ) );
+						$wp_customize->add_control( new $control_object ( $wp_customize, $id,
+						 array_merge( $option_control_parameters, array( 'mode' => $mode, 'direction' => $dir, 'input_attrs' => $input_attrs ) )
+						 ) );
 				}
 		}
 
@@ -98,13 +96,12 @@ class Dahz_Customizer_Builder {
 		  'controls/text/text-slider-custom-control.php',
 		  'controls/layout/layout-picker-custom-control.php',
 		  'controls/select/selectbox-dropdown-custom-control.php',
-		  'controls/text/textarea-custom-control.php',
 		  'controls/text/checkbox-custom-control.php',
 		  'controls/text/radiobox-custom-control.php'
 		);
 
 		foreach ( $custom_control_files as $files ) {
-				require( DF_CUSTOMIZER_CONTROL_DIR . $files );
+				require_once( DF_CUSTOMIZER_CONTROL_DIR . $files );
 		}
 
 		$wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
@@ -117,52 +114,47 @@ class Dahz_Customizer_Builder {
 	public function get_object_controls( $control_type ){
 		switch ( $control_type ) {
 			case 'description':
-				$control_object = 'DAHZ_TextDescription_Control';
+			return 'DAHZ_TextDescription_Control';
 				break;
 
 			case 'sub-title':
-				$control_object = 'DAHZ_Subtitle_Control';
-				break;
-
-			case 'textarea':
-				$control_object = 'DAHZ_Textarea_Control';
+			return 'DAHZ_Subtitle_Control';
 				break;
 
 			case 'images_radio':
-				$control_object = 'DAHZ_Layout_Picker_Control';
+			return 'DAHZ_Layout_Picker_Control';
 				break;
 
 			case 'slider':
-				$control_object = 'DAHZ_RangeSlider_Control';
+			return 'DAHZ_RangeSlider_Control';
 				break;
 
 			case 'uploader':
-				$control_object = 'DAHZ_Media_Uploader_Control';
+			return 'DAHZ_Media_Uploader_Control';
 				break;
 
 			case 'image':
-				$control_object = 'WP_Customize_Image_Control';
+			return 'WP_Customize_Image_Control';
 				break;
 
 			case 'color':
-				$control_object =	'WP_Customize_Color_Control';
+			return	'WP_Customize_Color_Control';
 				break;
 
 			case 'select':
-				$control_object =	'DAHZ_Selectbox_Dropdown_Control';
+			return	'DAHZ_Selectbox_Dropdown_Control';
 				break;
 
 			case 'checkbox':
-				$control_object =	'DAHZ_Checkbox_Control';
+			return	'DAHZ_Checkbox_Control';
 				break;
 
 			case 'radio':
-				$control_object =	'DAHZ_Radiobox_Control';
+			return	'DAHZ_Radiobox_Control';
 				break;
 		}
 
-		return $control_object;
+		return FALSE;
 	}
 
 }
-$dahz_Customizer_Builder = new Dahz_Customizer_Builder();

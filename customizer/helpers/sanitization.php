@@ -67,37 +67,33 @@ function dahz_sanitize_default( $value ){
 function dahz_get_sanitization( $control_type ) {
 
 			switch ( $control_type ) {
-				case 'checkbox' :
-					$sanitize_callback = 'dahz_sanitize_checkbox';
-					break;
 				case 'select' :
-					$sanitize_callback = 'sanitize_text_field';
-					break;
 				case 'radio' :
-					$sanitize_callback = 'sanitize_text_field';
-					break;
-				case 'color' :
-					$sanitize_callback = 'sanitize_hex_color';
+					return 'sanitize_text_field';
 					break;
 				case 'image' :
-					$sanitize_callback = 'esc_url_raw';
+				case 'uploader' :
+					return 'esc_url_raw';
+					break;
+				case 'checkbox' :
+					return 'dahz_sanitize_checkbox';
+					break;
+				case 'color' :
+					return 'sanitize_hex_color';
 					break;
 				case 'text' :
-					$sanitize_callback = 'esc_attr';
+					return 'esc_attr';
 					break;
 				case 'textarea' :
-					$sanitize_callback = 'dahz_sanitize_textarea';
-					break;
-				case 'uploader' :
-					$sanitize_callback = 'esc_url_raw';
+					return 'dahz_sanitize_textarea';
 					break;
 				case 'slider' :
-					$sanitize_callback = 'dahz_sanitize_range';
+					return 'dahz_sanitize_range';
 					break;
 				default:
-					$sanitize_callback = 'dahz_sanitize_default';
+					return 'dahz_sanitize_default';
 			}
 
-			return $sanitize_callback;
+			return FALSE;
 
 		}

@@ -1,5 +1,11 @@
 ** DahzFramework Changelog **
 
+Version 2.1.2
+* Removed: return of array wp_parse_args()
+* Removed: textarea custom control now it's introduce in WP 4.1
+* Changed: use object class admin-init.php.
+* Added: $option_control_parameters containing an array option customizer ( customizer/dahz-customizer-builder.php )
+
 Version 2.1.1
 * added: typography customizer control type
 * added: class Dahz_Sanitization_Helper
