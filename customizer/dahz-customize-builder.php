@@ -63,7 +63,7 @@ class Dahz_Customizer_Builder {
 					'settings'          => $setting
 				);
 
-				if( in_array( $control['type'], array( 'select', 'radio' ) ) ) {
+				if( in_array( $control['type'], array( 'select', 'radio', 'images_radio' ) ) ) {
 					$option_control_parameters['choices'] = $choices;
 				}
 
