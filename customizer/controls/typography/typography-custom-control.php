@@ -63,9 +63,7 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 	 * @return void
 	 */
 	public function enqueue() {
-		$suffix = dahz_get_min_suffix();
 		wp_enqueue_script( 'dahz-api-controls' );
-    wp_enqueue_style( 'customize-semantic-dropdown', DF_CORE_CSS_DIR . 'dropdown'.$suffix.'.css', null, null);	
 	}
 
 	/**
@@ -127,7 +125,7 @@ class DAHZ_Typography_Control extends WP_Customize_Control {
 					<span class="customize-control-title">{{ data.family.label }}</span>
 				<# } #>
 
-				<select class="selectbox-search ui search selection dropdown" {{{ data.family.link }}}>
+				<select {{{ data.family.link }}}>
 
 					<# _.each( data.family.choices, function( label, choice ) { #>
 						<option value="{{ choice }}" <# if ( choice === data.family.value ) { #> selected="selected" <# } #>>{{ label }}</option>
