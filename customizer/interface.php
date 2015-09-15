@@ -63,11 +63,11 @@ function dahz_build_customizer( $wp_customize ) {
 					$option_control_parameters['choices'] = $choices;
 				}
 
-			if( in_array( $control['type'], array( 'text', 'textarea', 'url', 'password', 'email' ) ) ) {
+			if( in_array( $control['type'], array( 'text', 'textarea', 'url', 'password', 'email', 'select' ) ) ) {
 						$wp_customize->add_control( $id, $option_control_parameters );
 			} else {
 						$wp_customize->add_control( new $control_object ( $wp_customize, $id,
-						 array_merge( $option_control_parameters, array( 'mode' => $mode, 'direction' => $dir, 'input_attrs' => $input_attrs ) )
+						 array_merge( $option_control_parameters, array( 'mode' => $mode, 'input_attrs' => $input_attrs ) )
 						 ) );
 				}
 		}
@@ -101,7 +101,6 @@ function dahz_customizer_register_autoload( $wp_customize ) {
 		$wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
 		$wp_customize->register_control_type( 'DAHZ_TextDescription_Control' );
 		$wp_customize->register_control_type( 'DAHZ_Layout_Picker_Control' );
-		$wp_customize->register_control_type( 'DAHZ_Selectbox_Dropdown_Control' );
 		$wp_customize->register_control_type( 'DAHZ_Typography_Control' );
 }
 
@@ -158,10 +157,6 @@ function dahz_customize_object_controls( $control_type ){
 
 			case 'color':
 			return	'WP_Customize_Color_Control';
-				break;
-
-			case 'select':
-			return	'DAHZ_Selectbox_Dropdown_Control';
 				break;
 
 			case 'checkbox':
