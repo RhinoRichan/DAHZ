@@ -1,6 +1,4 @@
 <?php
-require_once DF_CUSTOMIZER_CONTROL_DIR . 'controls/typography/googlefont-array.php';
-
 /**
  * Typography control class.
  *

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Dahz Framework - A WordPress theme development framework.
  * @package   DahzFramework
- * @version   2.1.2
+ * @version   2.2.0
  * @author    Dahz
  * @copyright Copyright (c) 2015, Dahz
  */
@@ -35,7 +35,7 @@ class Dahz {
   public function constants() {
 
     /* Sets the framework version number. */
-    define( 'DF_VERSION', '2.1.2' );
+    define( 'DF_VERSION', '2.2.0' );
 
     /* Sets the path to the parent theme directory. */
     define( 'THEME_DIR', get_template_directory() );
@@ -102,7 +102,10 @@ class Dahz {
    */
   public function customizer() {
 
-    require_once DF_CUSTOMIZER_CONTROL_DIR . 'helpers/sanitization.php';
+    require_once DF_CUSTOMIZER_CONTROL_DIR . 'googlefont-array.php';
+    require_once DF_CUSTOMIZER_CONTROL_DIR . 'interface.php';
+    require_once DF_CUSTOMIZER_CONTROL_DIR . 'sanitization.php';
+
     require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-scripts.php';
     require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-builder.php';
     require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-base.php';
