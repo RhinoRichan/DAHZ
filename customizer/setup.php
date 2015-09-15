@@ -64,7 +64,7 @@ function df_options( $name, $default = false ) {
 }
 endif;
 
-add_action( 'customize_controls_enqueue_scripts', 'dahz_customize_control_register_scripts' , 0 );
+add_action( 'customize_controls_enqueue_scripts', 'dahz_customize_control_register_scripts' );
 if( ! function_exists( 'dahz_customize_control_register_scripts' ) ) :
 /**
 * get style and script
