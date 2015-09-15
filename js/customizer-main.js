@@ -10,22 +10,10 @@ customControls = {
 			// Populate cache
 		  this.cache.$buttonset  = $('.df-radio-control-buttonset, .df-radio-control-image');
 		  this.cache.$range      = $('.input_df_slider_text');
-			this.cache.$tooltip 	 = 	$( '.tooltip' );
-			this.cache.$selectbox   = $('.selectbox, .selectbox-search');
-
-			// Initialize Button sets
-			if (this.cache.$selectbox.length > 0) {
-				this.select_dropdown();
-			}
 
 			// Initialize Button sets
 			if (this.cache.$buttonset.length > 0) {
 				this.buttonset();
-			}
-
-			// Initialize tooltip
-			if (this.cache.$tooltip.length > 0) {
-				this.tooltip();
 			}
 
 			// Initialize ranges
@@ -35,23 +23,10 @@ customControls = {
 
 	},
 
-	// Select dropdown
-	select_dropdown: function() {
-	this.cache.$selectbox.dropdown();
-	},
 
 	// Radio Buttonset
 	buttonset: function() {
   	this.cache.$buttonset.buttonset();
-	},
-
-	// Tooltip
-	tooltip: function() {
-		this.cache.$tooltip.popup({
-				className   : {
-								popup       : 'ui popup small'
-							}
-			});
 	},
 
 	// Slider Range

@@ -54,7 +54,7 @@ class DAHZ_Layout_Picker_Control extends WP_Customize_Control
              } #>
 
               <# if( data.description ) { #>
-                 <i data-content="{{{ data.description }}}" data-position="bottom right"  data-offset="10" class="icon tooltip"></i>
+                	<span class="description customize-control-description">{{{ data.description }}}</span>
               <# } #>
            </span>
 

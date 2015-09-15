@@ -30,7 +30,7 @@ class DAHZ_RangeSlider_Control extends WP_Customize_Control {
   		<label>
   			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?>
         <?php if ( ! empty( $this->description ) ) : ?>
-        <i data-content="<?php echo $this->description; ?>" data-position="bottom right"  data-offset="10" class="icon tooltip"></i>
+          <span class="description customize-control-description"><?php echo $this->description; ?></span>
         <?php endif; ?>
         </span>
         <input id="<?php echo esc_attr($ids . 'input'); ?>" class="input_df_slider_text" type="text" <?php $this->input_attrs(); ?> value="<?php echo $this->value(); ?>" <?php $this->link(); ?>>

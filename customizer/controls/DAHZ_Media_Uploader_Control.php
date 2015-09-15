@@ -35,7 +35,7 @@ class DAHZ_Media_Uploader_Control extends WP_Customize_Control {
 			<span class="customize-control-title">
 			<?php echo esc_html( $this->label ); ?>
 			<?php if ( ! empty( $this->description ) ) : ?>
-			<i data-content="<?php echo $this->description; ?>" data-position="bottom right" data-offset="10" class="icon tooltip"></i>
+      <span class="description customize-control-description"><?php echo $this->description; ?></span>
 			<?php endif; ?>
 			</span>
 

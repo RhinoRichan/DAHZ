@@ -13,19 +13,6 @@
 		}
 	} );
 
-  // Selectbox
-	api.controlConstructor['select'] = api.Control.extend( {
-    ready: function() {
-        var control = this;
-
-        control.container.on( 'change', 'select',
-            function() {
-                control.setting.set( jQuery( this ).val() );
-            }
-        );
-    }
-} );
-
 	// Typography
 	api.controlConstructor['typography'] = api.Control.extend( {
 		ready: function() {
