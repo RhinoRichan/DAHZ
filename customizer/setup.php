@@ -64,7 +64,7 @@ function df_options( $name, $default = false ) {
 }
 endif;
 
-add_action('customize_controls_enqueue_scripts', 'dahz_customize_control_register_scripts' , 0 );
+add_action( 'customize_controls_enqueue_scripts', 'dahz_customize_control_register_scripts' , 0 );
 if( ! function_exists( 'dahz_customize_control_register_scripts' ) ) :
 /**
 * get style and script
@@ -72,8 +72,8 @@ if( ! function_exists( 'dahz_customize_control_register_scripts' ) ) :
 * @since  1.5.0
 */
 function dahz_customize_control_register_scripts() {
-  $suffix = dahz_get_min_suffix()
-    wp_enqueue_style('dahz-customizer', DF_CORE_CSS_DIR . 'dahz-customizer'. $suffix .'.css');
+    $suffix = dahz_get_min_suffix();
+    wp_enqueue_style( 'dahz-customizer', DF_CORE_CSS_DIR . 'dahz-customizer'. $suffix .'.css' );
     //HOOK
     do_action('dahz_enqueue_customizer_admin');
 
