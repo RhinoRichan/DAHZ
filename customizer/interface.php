@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'customize_register', 'dahz_customizer_register_autoload', 1 );
-add_action( 'customize_register', 'dahz_build_customizer' ) );
+add_action( 'customize_register', 'dahz_build_customizer' );
 
 /**
  * Build Customizer
