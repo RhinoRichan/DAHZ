@@ -1,8 +1,11 @@
 ** DahzFramework Changelog **
 
 Version 2.2.0
-* Changed : Renaming file in folder customizer. 
+* Removed: selectbox custom control
+* Removed: tooltip description
 * Added: autoloader callback.
+* Added: customizer default filter dahz_get_option_default( $setting )
+* Changed : Renaming file in folder customizer.
 * Changed: customizer custom control filename.
 
 Version 2.1.2

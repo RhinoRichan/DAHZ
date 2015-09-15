@@ -28,7 +28,6 @@ function dahz_build_customizer( $wp_customize ) {
 		}
 		foreach ( $controls as $control ) {
 			$priority       = ( isset( $control['priority'] ) ) ? $control['priority'] : '';
-			$default        = ( isset( $control['default'] ) ) ? $control['default'] : '';
 			$description    = ( isset( $control['description'] ) ) ? $control['description'] : '';
 			$section        = ( isset( $control['section'] ) ) ? esc_attr( $control['section'] ) : '';
 			$label					= ( isset( $control['label'] ) ) ? $control['label'] : '';
@@ -43,7 +42,7 @@ function dahz_build_customizer( $wp_customize ) {
 			$control_object = dahz_customize_object_controls( $control['type'] );
 
 			$wp_customize->add_setting( $setting, array(
-					'default'    => $default,
+					'default'    => dahz_get_option_default( $control['setting'] ),
 					'type'       => 'option',
 					'capability' => 'edit_theme_options',
 					'transport'  => $transport,
@@ -170,3 +169,42 @@ function dahz_customize_object_controls( $control_type ){
 
 		return FALSE;
 	}
+
+if ( ! function_exists( 'dahz_customizer_setting_defaults' ) ) :
+/**
+ * Filter the default values for the settings.
+ *
+ * @since 2.2.0
+ *
+ * @param array    $defaults    The list of default settings.
+ */
+function dahz_customizer_setting_defaults() {
+	$defaults = apply_filters( 'dahz_customizer_setting_defaults', array() );
+	return $defaults;
+}
+endif;
+
+if ( ! function_exists( 'dahz_get_option_default' ) ) :
+/**
+ * Return a particular global option default.
+ *
+ * @since  2.2.0.
+ *
+ * @param  string    $mod    The key of the option to return.
+ * @return mixed                Default value if found; false if not found.
+ */
+function dahz_get_option_default( $mod ) {
+	$defaults = dahz_customizer_setting_defaults();
+	$default  = ( isset( $defaults[ $mod ] ) ) ? $defaults[ $mod ] : false;
+
+	/**
+	 * Filter the retrieved default value.
+	 *
+	 * @since 2.2.0.
+	 *
+	 * @param mixed     $default    The default value.
+	 * @param string    $option     The name of the default value.
+	 */
+	return apply_filters( 'dahz_get_option_default', $default, $mod );
+}
+endif;
