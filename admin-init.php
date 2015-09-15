@@ -105,18 +105,9 @@ class Dahz {
     require_once DF_CUSTOMIZER_CONTROL_DIR . 'googlefont-array.php';
     require_once DF_CUSTOMIZER_CONTROL_DIR . 'interface.php';
     require_once DF_CUSTOMIZER_CONTROL_DIR . 'sanitization.php';
-
-    require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-scripts.php';
-    require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-builder.php';
-    require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-base.php';
-    require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-options.php';
+    require_once DF_CUSTOMIZER_CONTROL_DIR . 'setup.php';
     /* Backup Import / Export */
-    require_once DF_CUSTOMIZER_CONTROL_DIR . 'dahz-customize-backup.php';
-
-    // Call the object
-    $dahz_customizer_scripts = new Dahz_Customizer_Scripts();
-    $dahz_Customizer_Builder = new Dahz_Customizer_Builder();
-    $dahz_customizer_base = new Dahz_Customizer_Base();
+    require_once DF_CUSTOMIZER_CONTROL_DIR . 'backup.php';
 
   }
 

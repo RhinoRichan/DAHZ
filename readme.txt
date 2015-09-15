@@ -1,5 +1,10 @@
 ** DahzFramework Changelog **
 
+Version 2.2.0
+* Changed : Renaming file in folder customizer. 
+* Added: autoloader callback.
+* Changed: customizer custom control filename.
+
 Version 2.1.2
 * Removed: return of array wp_parse_args()
 * Removed: textarea custom control now it's introduce in WP 4.1

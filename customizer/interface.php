@@ -10,9 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'customize_register', 'dahz_register_control_type', 1 );
-//add_action( 'customize_register', 'dahz_customizer_register_autoload', 1 );
-add_action( 'customize_register', 'dahz_build_customizer' ), 99 );
+add_action( 'customize_register', 'dahz_customizer_register_autoload', 1 );
+add_action( 'customize_register', 'dahz_build_customizer' ) );
 
 /**
  * Build Customizer
@@ -73,40 +72,19 @@ function dahz_build_customizer( $wp_customize ) {
 				}
 		}
 
-	}
+}
 
-	function dahz_customizer_controls() {
+/**
+ * Create an array to manipulate data customizer control
+ * @since 1.2.1
+ * @return array
+ */
+function dahz_customizer_controls() {
 
-		$controls = apply_filters( 'df_customizer_controls', array() );
-		return $controls;
+	$controls = apply_filters( 'df_customizer_controls', array() );
+	return $controls;
 
-	}
-
-	function dahz_register_control_type( $wp_customize ) {
-
-		$custom_control_files = array(
-		  'controls/media/media-uploader-custom-control.php',
-		  'controls/typography/typography-custom-control.php',
-		  'controls/text/text-description-custom-control.php',
-		  'controls/text/text-subtitle-custom-control.php',
-		  'controls/text/text-slider-custom-control.php',
-		  'controls/layout/layout-picker-custom-control.php',
-		  'controls/select/selectbox-dropdown-custom-control.php',
-		  'controls/text/checkbox-custom-control.php',
-		  'controls/text/radiobox-custom-control.php'
-		);
-
-		foreach ( $custom_control_files as $files ) {
-				require_once( DF_CUSTOMIZER_CONTROL_DIR . $files );
-		}
-
-		$wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
-		$wp_customize->register_control_type( 'DAHZ_TextDescription_Control' );
-		$wp_customize->register_control_type( 'DAHZ_Layout_Picker_Control' );
-		$wp_customize->register_control_type( 'DAHZ_Selectbox_Dropdown_Control' );
-		$wp_customize->register_control_type( 'DAHZ_Typography_Control' );
-	}
-
+}
 
 /**
  * Register autoloaders for Customizer-related classes.
@@ -120,10 +98,11 @@ function dahz_build_customizer( $wp_customize ) {
 function dahz_customizer_register_autoload( $wp_customize ) {
     spl_autoload_register( 'dahz_autoload_classes' );
 
-    $wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
-    $wp_customize->register_control_type( 'DAHZ_TextDescription_Control' );
-    $wp_customize->register_control_type( 'DAHZ_Layout_Picker_Control' );
-    $wp_customize->register_control_type( 'DAHZ_Typography_Control' );
+		$wp_customize->register_control_type( 'DAHZ_Subtitle_Control' );
+		$wp_customize->register_control_type( 'DAHZ_TextDescription_Control' );
+		$wp_customize->register_control_type( 'DAHZ_Layout_Picker_Control' );
+		$wp_customize->register_control_type( 'DAHZ_Selectbox_Dropdown_Control' );
+		$wp_customize->register_control_type( 'DAHZ_Typography_Control' );
 }
 
 /**
@@ -146,8 +125,8 @@ function dahz_autoload_classes( $class_name ) {
 
 /**
  * create object controls base on type for custom controls
+ *
  * @access public
- * @static
  * @param $type
  * @return string
  */
