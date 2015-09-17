@@ -20,7 +20,7 @@ class DAHZ_Media_Uploader_Control extends WP_Customize_Control {
     $suffix = dahz_get_min_suffix();
 		wp_enqueue_style('media-upload');
 		wp_enqueue_style('thickbox');
-		wp_register_script( 'customize-media-uploader', DF_CORE_JS_DIR . 'customizer-media-uploader'.$suffix.'.js', array('jquery', 'media-upload', 'thickbox'), false, true);
+		wp_register_script( 'customize-media-uploader', DF_CORE_JS_DIR . 'customizer-media-uploader'.$suffix.'.js', array( 'media-upload', 'thickbox' ), false, true);
 		wp_localize_script('customize-media-uploader', '_uploader', array('id' => $this->id) );
 		wp_enqueue_script( 'customize-media-uploader' );
 	}
