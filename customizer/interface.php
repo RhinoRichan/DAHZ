@@ -193,7 +193,7 @@ if ( ! function_exists( 'dahz_get_option_default' ) ) :
  * @param  string    $mod    The key of the option to return.
  * @return mixed                Default value if found; false if not found.
  */
-function dahz_get_option_default( $mod ) {
+function dahz_get_default( $mod ) {
 	$defaults = dahz_customizer_setting_defaults();
 	$default  = ( isset( $defaults[ $mod ] ) ) ? $defaults[ $mod ] : false;
 
@@ -205,6 +205,6 @@ function dahz_get_option_default( $mod ) {
 	 * @param mixed     $default    The default value.
 	 * @param string    $option     The name of the default value.
 	 */
-	return apply_filters( 'dahz_get_option_default', $default, $mod );
+	return apply_filters( 'dahz_customizer_get_default', $default, $mod );
 }
 endif;
