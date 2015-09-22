@@ -42,7 +42,7 @@ function dahz_build_customizer( $wp_customize ) {
 			$control_object = dahz_customize_object_controls( $control['type'] );
 
 			$wp_customize->add_setting( $setting, array(
-					'default'    => dahz_get_option_default( $control['setting'] ),
+					'default'    => dahz_get_default( $control['setting'] ),
 					'type'       => 'option',
 					'capability' => 'edit_theme_options',
 					'transport'  => $transport,
