@@ -78,6 +78,18 @@ function dahz_customize_control_register_scripts() {
     do_action('dahz_enqueue_customizer_admin');
 
     wp_enqueue_script('dahz-customizer-main', DF_CORE_JS_DIR . 'customizer-main'. $suffix .'.js', array( 'customize-controls' ), false, true );
-    wp_register_script('dahz-api-controls', DF_CORE_JS_DIR . 'api-controls'. $suffix .'.js', array( 'customize-controls' ), false, true);
 }
 endif;
+
+add_action( 'customize_controls_enqueue_scripts', 'dahz_api_controls_customizer_script', 0 );
+/**
+ * API custom control JS interface
+ * @author Dahz
+ * @since  1.5.0
+ * @return void
+ */
+function dahz_api_controls_customizer_script()
+{
+    $suffix = dahz_get_min_suffix();
+    wp_register_script( 'dahz-api-controls', DF_CORE_JS_DIR . 'api-controls'. $suffix .'.js', array( 'customize-controls' ), false, true );
+}
