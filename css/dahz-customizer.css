@@ -303,6 +303,7 @@ background-color:#212121;
   position: absolute;
   content: '';
   top: 0rem;
+  left: 0;
   z-index: 1;
   border: none;
   background-color: rgba(0, 0, 0, 0.05);
@@ -1033,7 +1034,7 @@ button.ui-button-icons-only { width: 3.7em; }
   background-color: #5bbd72;
   background-repeat: repeat-x;
 }
-.ui-buttonset .ui-button { line-height:normal; margin-left: 0; margin-right: -.4em; }
+.ui-buttonset .ui-button { line-height:normal; margin-left: 0; margin-right: -.4em; display: inline-block;}
 
 /* workarounds */
 button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
